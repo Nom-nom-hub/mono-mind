@@ -1,0 +1,46 @@
+# MonoMind Configuration
+
+# Default configuration values
+# This file can be overridden by a local config file
+
+# Logging
+log_level: info
+
+# Analyzer settings
+analyzer:
+  # Languages to analyze
+  languages:
+    - go
+    - javascript
+    - typescript
+    - python
+  
+  # File extensions to ignore
+  ignore_extensions:
+    - .git
+    - .svn
+    - node_modules
+    - vendor
+    - target
+    - build
+    - dist
+    - .DS_Store
+
+# Build settings
+build:
+  # Default build command
+  default_command: "make"
+  
+  # Parallel builds
+  parallel: true
+  
+  # Max concurrent builds
+  max_concurrent: 4
+
+# Release settings
+release:
+  # Default version bump
+  default_bump: "patch"
+  
+  # Changelog format
+  changelog_format: "markdown"

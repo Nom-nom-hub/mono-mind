@@ -1,0 +1,52 @@
+# MonoMind
+
+An AI-powered development assistant designed to autonomously manage monorepos and complex codebases.
+
+## Features
+
+- **Autonomous Refactoring**: Safely rename, move, or restructure code across multiple languages.
+- **Impact Analysis**: Predicts the effect of changes on modules, tests, and dependencies.
+- **Dependency Optimization**: Detects unused, outdated, or conflicting packages.
+- **Test Orchestration**: Determines which tests to run based on code changes.
+- **Automated Build Management**: Smart, incremental builds across monorepos.
+- **Release Management**: Versioning, changelog generation, and publishing to package registries.
+- **CLI-First Interface**: Simple commands for all actions.
+- **Plugin Architecture**: Extend functionality without modifying core agent.
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/mono-mind.git
+cd mono-mind
+
+# Build the binary
+go build -o mono cmd/mono/*.go
+```
+
+## Usage
+
+```bash
+# Analyze the repository and build dependency graph
+mono analyze
+
+# Show affected modules/tests for a change
+mono impact src/api/user.js
+
+# Incremental build of affected modules
+mono build
+
+# Safe refactor of code
+mono refactor --rename oldFunc newFunc --dry-run
+
+# Manage releases
+mono release --bump minor --changelog
+```
+
+## Configuration
+
+MonoMind can be configured using the `configs/config.yaml` file.
+
+## License
+
+MIT
