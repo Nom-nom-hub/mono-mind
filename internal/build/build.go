@@ -1,8 +1,10 @@
 package build
 
 import (
+	"os/exec"
 	"mono-mind/internal/analyzer"
 	"mono-mind/internal/logger"
+	"mono-mind/internal/plugins"
 )
 
 // BuildConfig holds configuration for the build process
@@ -24,6 +26,13 @@ type BuildResult struct {
 func IncrementalBuild(graph *analyzer.RepoGraph, config BuildConfig) *BuildResult {
 	logger.Info("Starting incremental build")
 	
+	// Initialize plugin manager
+	pluginManager := plugins.NewPluginManager()
+	pluginManager.LoadPluginsFromDir("plugins")
+	
+	// Execute pre-build plugins
+	pluginManager.ExecuteHook("pre-build")
+	
 	result := &BuildResult{
 		ModulesBuilt:  []string{},
 		ModulesSkipped: []string{},
@@ -36,21 +45,70 @@ func IncrementalBuild(graph *analyzer.RepoGraph, config BuildConfig) *BuildResul
 	// 3. Handle parallel execution if enabled
 	// 4. Collect results and errors
 	
-	// For now, we'll just simulate the process
+	// For demonstration, we'll build all modules
 	for moduleName := range graph.Modules {
 		if config.DryRun {
 			logger.Info("Would build module (dry-run)", "module", moduleName)
 			result.ModulesBuilt = append(result.ModulesBuilt, moduleName)
 		} else {
 			logger.Info("Building module", "module", moduleName)
-			result.ModulesBuilt = append(result.ModulesBuilt, moduleName)
-			// TODO: Execute actual build command for the module
+			
+			// Execute build command for the module
+			// In a real implementation, this would be language-specific
+			err := buildModule(moduleName, graph.Modules[moduleName])
+			if err != nil {
+				logger.Error("Failed to build module", "module", moduleName, "error", err)
+				result.Errors = append(result.Errors, moduleName+": "+err.Error())
+			} else {
+				result.ModulesBuilt = append(result.ModulesBuilt, moduleName)
+			}
 		}
 	}
+	
+	// Execute post-build plugins
+	pluginManager.ExecuteHook("post-build")
 	
 	logger.Info("Incremental build completed", 
 		"modules_built", len(result.ModulesBuilt),
 		"modules_skipped", len(result.ModulesSkipped))
 	
 	return result
+}
+
+// buildModule executes the build command for a specific module
+func buildModule(moduleName string, module analyzer.Module) error {
+	// This is a simplified implementation
+	// In a real system, we would determine the appropriate build command
+	// based on the language and project configuration
+	
+	var cmd *exec.Cmd
+	
+	switch module.Language {
+	case "go":
+		// For Go modules, we might run 'go build'
+		cmd = exec.Command("go", "build", "./"+module.Path)
+	case "javascript", "typescript":
+		// For JS/TS projects, we might run 'npm run build' or 'yarn build'
+		// Check if package.json exists in the module directory
+		cmd = exec.Command("npm", "run", "build")
+		cmd.Dir = module.Path
+	case "python":
+		// For Python projects, we might run 'python setup.py build'
+		cmd = exec.Command("python", "setup.py", "build")
+		cmd.Dir = module.Path
+	default:
+		// Default build command
+		cmd = exec.Command("make")
+		cmd.Dir = module.Path
+	}
+	
+	// Execute the command
+	output, err := cmd.CombinedOutput()
+	if err != nil {
+		logger.Error("Build failed", "module", moduleName, "output", string(output), "error", err)
+		return err
+	}
+	
+	logger.Debug("Build successful", "module", moduleName, "output", string(output))
+	return nil
 }

@@ -24,13 +24,23 @@ func AnalyzeImpact(graph *analyzer.RepoGraph, changedFile string) *ImpactResult 
 		Conflicts:       []string{},
 	}
 	
-	// In a real implementation, we would:
-	// 1. Find the module that contains the changed file
-	// 2. Traverse the dependency graph to find all affected modules
-	// 3. Map affected modules to tests
-	// 4. Check for potential conflicts
+	// Find the module that contains the changed file
+	// In a real implementation, we would parse the file path to determine the module
+	// For now, we'll use a simplified approach
+	changedModule := "example" // Placeholder
 	
-	// For now, we'll just simulate the process
+	// Find all modules that depend on the changed module
+	dependents := graph.GetDependentModules(changedModule)
+	result.AffectedModules = append(result.AffectedModules, dependents...)
+	
+	// Add the changed module itself
+	result.AffectedModules = append(result.AffectedModules, changedModule)
+	
+	// In a real implementation, we would also:
+	// 1. Map affected modules to tests
+	// 2. Check for potential conflicts
+	// 3. Analyze the actual content of the changed file
+	
 	logger.Info("Impact analysis completed", 
 		"affected_modules", len(result.AffectedModules),
 		"affected_tests", len(result.AffectedTests))
