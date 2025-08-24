@@ -4,65 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: "MonoMind Documentation" }}</title>
-    <link rel="stylesheet" href="{{ '/docs/style.css' | relative_url }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="{{ '/docs/premium-theme.css' | relative_url }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
-    <style>
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e9ecef;
-        }
-        .nav-links {
-            text-align: center;
-            margin: 30px 0;
-        }
-        .nav-links a {
-            display: inline-block;
-            margin: 0 15px;
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .nav-links a:hover {
-            background: #2980b9;
-        }
-    </style>
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('.code-block-container').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="container">
-        <header class="header">
+        <header class="hero">
             <h1>MonoMind Documentation</h1>
             <p>Comprehensive documentation for the MonoMind monorepo management tool</p>
         </header>
 
         <nav class="nav-links">
-            <a href="{{ '/README.md' | relative_url }}">Home</a>
-            <a href="{{ '/docs/QUICK_START.md' | relative_url }}">Quick Start</a>
-            <a href="{{ '/docs/USER_GUIDE.md' | relative_url }}">User Guide</a>
-            <a href="{{ '/docs/API.md' | relative_url }}">API Reference</a>
-            <a href="{{ '/docs/DEVELOPER_GUIDE.md' | relative_url }}">Developer Guide</a>
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <ul>
+                <li><a href="{{ '/docs/index.html' | relative_url }}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{{ '/docs/quick-start.html' | relative_url }}"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                <li><a href="{{ '/docs/user-guide.html' | relative_url }}"><i class="fas fa-book-open"></i> User Guide</a></li>
+                <li><a href="{{ '/docs/api.html' | relative_url }}"><i class="fas fa-cogs"></i> API Reference</a></li>
+                <li><a href="{{ '/docs/developer-guide.html' | relative_url }}"><i class="fas fa-code"></i> Developer Guide</a></li>
+                <li><a href="{{ '/docs/visualization-guide.html' | relative_url }}"><i class="fas fa-chart-network"></i> Visualization</a></li>
+                <li><a href="{{ '/docs/plugin-guide.html' | relative_url }}"><i class="fas fa-plug"></i> Plugin Guide</a></li>
+            </ul>
         </nav>
 
-        <main>
+        <section>
             {{ content }}
-        </main>
+        </section>
 
-        <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #e9ecef; text-align: center; color: #6c757d;">
+        <footer>
             <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
             <p>
-                <a href="https://github.com/nom-nom-hub/mono-mind" style="color: #3498db;">View on GitHub</a> |
-                <a href="https://github.com/nom-nom-hub/mono-mind/issues" style="color: #3498db;">Report Issues</a>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a> |
+                <a href="{{ '/docs/index.html' | relative_url }}"><i class="fas fa-arrow-left"></i> Back to Home</a>
             </p>
         </footer>
     </div>

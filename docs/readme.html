@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoMind - Main README</title>
+    <meta name="description" content="Introduction to MonoMind">
+    <link rel="stylesheet" href="premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('div').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.textContent;
+                        this.textContent = 'Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>MonoMind - Main README</h1>
+            <p>Introduction to MonoMind</p>
+        </header>
+
+        <nav class="nav-links">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                <li><a href="user-guide.html"><i class="fas fa-book-open"></i> User Guide</a></li>
+                <li><a href="api.html"><i class="fas fa-cogs"></i> API Reference</a></li>
+                <li><a href="developer-guide.html"><i class="fas fa-code"></i> Developer Guide</a></li>
+                <li><a href="visualization-guide.html"><i class="fas fa-chart-network"></i> Visualization</a></li>
+                <li><a href="plugin-guide.html"><i class="fas fa-plug"></i> Plugin Guide</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <h2>MonoMind Documentation</h2>
+<p>This directory contains the complete documentation suite for MonoMind, optimized for GitHub Pages with professional styling.</p>
+<h3>📚 Documentation Structure</h3>
+<h4>User Documentation</h4>
+<ul>
+  <li>--<a href="./QUICK_START.md">QUICK_START.md</a>-- – Fast path to productivity</li>
+  <li>--<a href="./USER_GUIDE.md">USER_GUIDE.md</a>-- – Complete reference for all features</li>
+  <li>--<a href="./VISUALIZATION_GUIDE.md">VISUALIZATION_GUIDE.md</a>-- – Understanding dependency graphs</li>
+  <li>--<a href="./PLUGIN_GUIDE.md">PLUGIN_GUIDE.md</a>-- – Creating and using plugins</li>
+  <li>--<a href="./CHANGELOG_GUIDE.md">CHANGELOG_GUIDE.md</a>-- – Working with releases</li>
+  <li>--<a href="./TROUBLESHOOTING.md">TROUBLESHOOTING.md</a>-- – Solutions to common problems</li>
+</ul>
+<h4>Developer Resources</h4>
+<ul>
+  <li>--<a href="./API.md">API.md</a>-- – Technical API reference</li>
+  <li>--<a href="./DEVELOPER_GUIDE.md">DEVELOPER_GUIDE.md</a>-- – Contributing to MonoMind</li>
+  <li>--<a href="./DOCUMENTATION_SUMMARY.md">DOCUMENTATION_SUMMARY.md</a>-- – Documentation overview</li>
+</ul>
+<h3>🎨 GitHub Pages Styling</h3>
+<p>This documentation is styled for professional presentation on GitHub Pages.</p>
+<h4>Files</h4>
+<ul>
+  <li>--<code>style.css</code>-- – Custom CSS with professional theming</li>
+  <li>--<code>index.html</code>-- – Main documentation landing page</li>
+  <li>--<code>_layouts/default.html</code>-- – Jekyll layout template</li>
+  <li>--<code>_config.yml</code>-- – GitHub Pages configuration</li>
+</ul>
+<h4>Features</h4>
+<ul>
+  <li>--Responsive Design-- – Works on desktop and mobile</li>
+  <li>--Syntax Highlighting-- – Proper highlighting for code blocks</li>
+  <li>--Professional Typography-- – Clean, readable fonts</li>
+  <li>--Navigation-- – Easy navigation between documents</li>
+  <li>--Print Styles-- – Optimized for printing</li>
+</ul>
+<h3>🚀 Setting Up GitHub Pages</h3>
+<p>1. --Enable GitHub Pages-- in repository settings.
+2. --Choose source--: Deploy from a branch.
+3. --Select branch--: <code>main</code> or your default branch.
+4. --Set folder--: <code>/docs</code> (if using the <code>docs</code> folder) or <code>/</code> (root).</p>
+<h4>Alternative: Root-level Deployment</h4>
+If deploying from the repository root, move these files:
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>`
+<h3>📝 Contributing to Documentation</h3>
+<h4>Writing Guidelines</h4>
+<ul>
+  <li>Use clear, concise language.</li>
+  <li>Include practical examples.</li>
+  <li>Keep line length under 120 characters.</li>
+  <li>Maintain proper heading hierarchy.</li>
+  <li>Test all commands and examples.</li>
+</ul>
+<h4>Formatting Standards</h4>
+<ul>
+  <li>All Markdown files pass <code>markdownlint</code> checks.</li>
+  <li>Headings have proper spacing.</li>
+  <li>Code blocks specify language.</li>
+  <li>Tables are properly formatted.</li>
+  <li>Links are functional.</li>
+</ul>
+<h4>Local Testing</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h3>🔧 Customization</h3>
+<h4>Colors</h4>
+<p>Edit <code>docs/style.css</code> to customize theme:</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Layout</h4>
+<p>Modify <code>docs/_layouts/default.html</code> for:</p>
+<ul>
+  <li>Navigation structure</li>
+  <li>Header/footer content</li>
+  <li>Additional CSS/JS includes</li>
+</ul>
+<h3>📄 License</h3>
+<p>This documentation is part of MonoMind and follows the same license terms.</p>
+<p>---</p>
+<p>--Need help?-- Check the <a href="./TROUBLESHOOTING.md">troubleshooting guide</a> or <a href="https://github.com/nom-nom-hub/mono-mind/issues">open an issue</a>.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a> |
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

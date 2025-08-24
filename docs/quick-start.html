@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoMind - Quick Start Guide</title>
+    <meta name="description" content="Get started with MonoMind in minutes">
+    <link rel="stylesheet" href="premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('div').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.textContent;
+                        this.textContent = 'Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>MonoMind - Quick Start Guide</h1>
+            <p>Get started with MonoMind in minutes</p>
+        </header>
+
+        <nav class="nav-links">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                <li><a href="user-guide.html"><i class="fas fa-book-open"></i> User Guide</a></li>
+                <li><a href="api.html"><i class="fas fa-cogs"></i> API Reference</a></li>
+                <li><a href="developer-guide.html"><i class="fas fa-code"></i> Developer Guide</a></li>
+                <li><a href="visualization-guide.html"><i class="fas fa-chart-network"></i> Visualization</a></li>
+                <li><a href="plugin-guide.html"><i class="fas fa-plug"></i> Plugin Guide</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <h2>What is MonoMind?</h2>
+            <p>MonoMind is an AI-powered development assistant that helps you manage complex codebases. It automates repository analysis, impact prediction, build orchestration, testing, refactoring, and release management.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+                <div style="text-align: center; padding: 1rem; background: var(--lighter-bg); border-radius: var(--border-radius);">
+                    <div style="font-size: 2em; margin-bottom: 0.5rem;">🔍</div>
+                    <strong>Repository Analysis</strong>
+                    <p style="font-size: 0.9em; margin-top: 0.5rem;">Deep dependency graph analysis</p>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: var(--lighter-bg); border-radius: var(--border-radius);">
+                    <div style="font-size: 2em; margin-bottom: 0.5rem;">🏗️</div>
+                    <strong>Smart Builds</strong>
+                    <p style="font-size: 0.9em; margin-top: 0.5rem;">Incremental builds only what's needed</p>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: var(--lighter-bg); border-radius: var(--border-radius);">
+                    <div style="font-size: 2em; margin-bottom: 0.5rem;">🧪</div>
+                    <strong>Test Intelligence</strong>
+                    <p style="font-size: 0.9em; margin-top: 0.5rem;">Run tests only for affected modules</p>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: var(--lighter-bg); border-radius: var(--border-radius);">
+                    <div style="font-size: 2em; margin-bottom: 0.5rem;">🔄</div>
+                    <strong>Safe Refactoring</strong>
+                    <p style="font-size: 0.9em; margin-top: 0.5rem;">AST-powered code transformations</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+
+            <h3>System Requirements</h3>
+            <ul>
+                <li><strong>Go</strong>: 1.19 or higher</li>
+                <li><strong>Git</strong>: For version control features</li>
+                <li><strong>Operating System</strong>: Windows, macOS, or Linux</li>
+            </ul>
+
+            <h3>Option 1: Pre-built Binary</h3>
+            <p>Download the latest release from <a href="https://github.com/nom-nom-hub/mono-mind/releases" style="color: var(--secondary-color);">GitHub Releases</a> and place it in your PATH.</p>
+
+            <h3>Option 2: Build from Source</h3>
+            <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+        </section>
+
+        <section>
+            <h2>7-Step Quick Start</h2>
+
+            <div style="counter-reset: step-counter;">
+                <div style="background: var(--lighter-bg); padding: 1.5rem; border-radius: var(--border-radius); margin: 1rem 0; border-left: 4px solid var(--secondary-color); position: relative;">
+                    <h4 style="margin-top: 0; color: var(--secondary-color);">
+                        <span style="background: var(--secondary-color); color: white; padding: 0.25rem 0.5rem; border-radius: 50%; font-size: 0.8em; margin-right: 0.5rem;">1</span>
+                        Navigate to Your Project
+                    </h4>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                </div>
+
+                <div style="background: var(--lighter-bg); padding: 1.5rem; border-radius: var(--border-radius); margin: 1rem 0; border-left: 4px solid var(--success-color); position: relative;">
+                    <h4 style="margin-top: 0; color: var(--success-color);">
+                        <span style="background: var(--success-color); color: white; padding: 0.25rem 0.5rem; border-radius: 50%; font-size: 0.8em; margin-right: 0.5rem;">2</span>
+                        Analyze Your Repository
+                    </h4>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                    <p style="margin-top: 1rem;">This generates a dependency graph of your entire monorepo.</p>
+                </div>
+
+                <div style="background: var(--lighter-bg); padding: 1.5rem; border-radius: var(--border-radius); margin: 1rem 0; border-left: 4px solid var(--warning-color); position: relative;">
+                    <h4 style="margin-top: 0; color: var(--warning-color);">
+                        <span style="background: var(--warning-color); color: white; padding: 0.25rem 0.5rem; border-radius: 50%; font-size: 0.8em; margin-right: 0.5rem;">3</span>
+                        Check Impact of Changes
+                    </h4>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                    <p style="margin-top: 1rem;">See which modules and tests will be affected by your changes.</p>
+                </div>
+
+                <div style="background: var(--lighter-bg); padding: 1.5rem; border-radius: var(--border-radius); margin: 1rem 0; border-left: 4px solid var(--info-color); position: relative;">
+                    <h4 style="margin-top: 0; color: var(--info-color);">
+                        <span style="background: var(--info-color); color: white; padding: 0.25rem 0.5rem; border-radius: 50%; font-size: 0.8em; margin-right: 0.5rem;">4</span>
+                        Build Affected Modules
+                    </h4>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                    <p style="margin-top: 1rem;">Only builds modules that have changed or depend on changed code.</p>
+                </div>
+
+                <div style="background: var(--lighter-bg); padding: 1.5rem; border-radius: var(--border-radius); margin: 1rem 0; border-left: 4px solid var(--accent-color); position: relative;">
+                    <h4 style="margin-top: 0; color: var(--accent-color);">
+                        <span style="background: var(--accent-color); color: white; padding: 0.25rem 0.5rem; border-radius: 50%; font-size: 0.8em; margin-right: 0.5rem;">5</span>
+                        Run Tests for Affected Modules
+                    </h4>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                    <p style="margin-top: 1rem;">Intelligently runs only the tests that matter.</p>
+                </div>
+
+                <div style="background: var(--lighter-bg); padding: 1.5rem; border-radius: var(--border-radius); margin: 1rem 0; border-left: 4px solid #9b59b6; position: relative;">
+                    <h4 style="margin-top: 0; color: #9b59b6;">
+                        <span style="background: #9b59b6; color: white; padding: 0.25rem 0.5rem; border-radius: 50%; font-size: 0.8em; margin-right: 0.5rem;">6</span>
+                        Refactor Code Safely
+                    </h4>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                    <p style="margin-top: 1rem;">Use AST-powered refactoring for safe, accurate changes.</p>
+                </div>
+
+                <div style="background: var(--lighter-bg); padding: 1.5rem; border-radius: var(--border-radius); margin: 1rem 0; border-left: 4px solid #e67e22; position: relative;">
+                    <h4 style="margin-top: 0; color: #e67e22;">
+                        <span style="background: #e67e22; color: white; padding: 0.25rem 0.5rem; border-radius: 50%; font-size: 0.8em; margin-right: 0.5rem;">7</span>
+                        Create a Release
+                    </h4>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                    <p style="margin-top: 1rem;">Automated version bumping, changelog generation, and publishing.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Configuration</h2>
+            <p>Create a configuration file to customize MonoMind's behavior:</p>
+
+            <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+        </section>
+
+        <section>
+            <h2>Next Steps</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)); color: white; border-radius: var(--border-radius-lg);">
+                    <div style="font-size: 3em; margin-bottom: 1rem;">📖</div>
+                    <h3 style="margin: 0 0 1rem 0; color: white;">Read the User Guide</h3>
+                    <p style="margin: 0; opacity: 0.9;">Complete documentation for all MonoMind features</p>
+                    <a href="user-guide.html" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: white; color: var(--primary-color); text-decoration: none; border-radius: var(--border-radius); font-weight: 600;">Learn More</a>
+                </div>
+
+                <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, var(--success-color), var(--warning-color)); color: white; border-radius: var(--border-radius-lg);">
+                    <div style="font-size: 3em; margin-bottom: 1rem;">🔌</div>
+                    <h3 style="margin: 0 0 1rem 0; color: white;">Create Your First Plugin</h3>
+                    <p style="margin: 0; opacity: 0.9;">Extend MonoMind with custom functionality</p>
+                    <a href="plugin-guide.html" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: white; color: var(--primary-color); text-decoration: none; border-radius: var(--border-radius); font-weight: 600;">Get Started</a>
+                </div>
+
+                <div style="text-align: center; padding: 2rem; background: linear-gradient(135deg, var(--info-color), var(--accent-color)); color: white; border-radius: var(--border-radius-lg);">
+                    <div style="font-size: 3em; margin-bottom: 1rem;">🔧</div>
+                    <h3 style="margin: 0 0 1rem 0; color: white;">Explore the API</h3>
+                    <p style="margin: 0; opacity: 0.9;">Technical reference for developers</p>
+                    <a href="api.html" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: white; color: var(--primary-color); text-decoration: none; border-radius: var(--border-radius); font-weight: 600;">View API</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a> |
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

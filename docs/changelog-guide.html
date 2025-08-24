@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoMind - Changelog Guide</title>
+    <meta name="description" content="How to manage and generate changelogs with MonoMind">
+    <link rel="stylesheet" href="premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('div').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.textContent;
+                        this.textContent = 'Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>MonoMind - Changelog Guide</h1>
+            <p>How to manage and generate changelogs with MonoMind</p>
+        </header>
+
+        <nav class="nav-links">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                <li><a href="user-guide.html"><i class="fas fa-book-open"></i> User Guide</a></li>
+                <li><a href="api.html"><i class="fas fa-cogs"></i> API Reference</a></li>
+                <li><a href="developer-guide.html"><i class="fas fa-code"></i> Developer Guide</a></li>
+                <li><a href="visualization-guide.html"><i class="fas fa-chart-network"></i> Visualization</a></li>
+                <li><a href="plugin-guide.html"><i class="fas fa-plug"></i> Plugin Guide</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <h2>MonoMind Changelog</h2>
+<h3>Table of Contents</h3>
+1. <a href="#introduction">Introduction</a>
+2. <a href="#changelog-format">Changelog Format</a>
+3. <a href="#versioning">Versioning</a>
+4. <a href="#generating-changelogs">Generating Changelogs</a>
+5. <a href="#manual-changelog-entries">Manual Changelog Entries</a>
+6. <a href="#best-practices">Best Practices</a>
+<h3>Introduction</h3>
+<p>This document explains how MonoMind handles changelogs and how you can work with them in your projects.</p>
+<h3>Changelog Format</h3>
+<p>MonoMind generates changelogs in Markdown format following the Keep a Changelog standard:</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>`
+<h4>Sections</h4>
+<ul>
+  <li>--Added--: New features</li>
+  <li>--Changed--: Changes in existing functionality</li>
+  <li>--Deprecated--: Soon-to-be removed features</li>
+  <li>--Removed--: Removed features</li>
+  <li>--Fixed--: Bug fixes</li>
+  <li>--Security--: Security vulnerabilities</li>
+</ul>
+<h3>Versioning</h3>
+<p>MonoMind follows Semantic Versioning (SemVer):</p>
+<h4>Version Format</h4>
+<code>MAJOR.MINOR.PATCH</code>
+<h4>Version Bumps</h4>
+<ul>
+  <li>--MAJOR--: Breaking changes</li>
+  <li>--MINOR--: Backward compatible new features</li>
+  <li>--PATCH--: Backward compatible bug fixes</li>
+</ul>
+<h4>Examples</h4>
+<ul>
+  <li><code>1.0.0</code> → <code>1.0.1</code> (patch)</li>
+  <li><code>1.0.1</code> → <code>1.1.0</code> (minor)</li>
+  <li><code>1.1.0</code> → <code>2.0.0</code> (major)</li>
+</ul>
+<h3>Generating Changelogs</h3>
+<h4>Automatic Generation</h4>
+<p>MonoMind can automatically generate changelogs from Git commit history:</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Commit Message Guidelines</h4>
+<p>For best changelog generation, follow these commit message conventions:</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Supported Commit Types</h4>
+<ul>
+  <li><code>feat</code>: New features</li>
+  <li><code>fix</code>: Bug fixes</li>
+  <li><code>chore</code>: Maintenance tasks</li>
+  <li><code>docs</code>: Documentation changes</li>
+  <li><code>style</code>: Code style changes</li>
+  <li><code>refactor</code>: Code refactoring</li>
+  <li><code>perf</code>: Performance improvements</li>
+  <li><code>test</code>: Test changes</li>
+</ul>
+<h3>Manual Changelog Entries</h3>
+<h4>Adding Custom Entries</h4>
+<p>You can add custom entries to your changelog:</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Editing Changelogs</h4>
+<p>You can manually edit the <code>CHANGELOG.md</code> file to:</p>
+<ul>
+  <li>Add missing entries</li>
+  <li>Correct information</li>
+  <li>Reorganize sections</li>
+  <li>Add more details</li>
+</ul>
+<h3>Best Practices</h3>
+<h4>Writing Good Changelog Entries</h4>
+<ul>
+  <li>Use clear, concise language</li>
+  <li>Focus on what changed for users</li>
+  <li>Include issue numbers when relevant</li>
+  <li>Keep entries in chronological order</li>
+  <li>Use consistent formatting</li>
+</ul>
+<h4>Commit Message Best Practices</h4>
+<ul>
+  <li>Use present tense ("Add feature" not "Added feature")</li>
+  <li>Use imperative mood ("Move cursor to..." not "Moves cursor to...")</li>
+  <li>Limit first line to 72 characters</li>
+  <li>Reference issues and pull requests</li>
+</ul>
+<h4>Version Release Best Practices</h4>
+<ul>
+  <li>Update changelog before tagging releases</li>
+  <li>Keep an "Unreleased" section for upcoming changes</li>
+  <li>Link to commits or issues when possible</li>
+  <li>Include release dates</li>
+  <li>Follow consistent formatting</li>
+</ul>
+<h4>Example Good Changelog Entry</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Example Poor Changelog Entry</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a> |
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

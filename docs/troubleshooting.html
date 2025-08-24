@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoMind - Troubleshooting Guide</title>
+    <meta name="description" content="Solutions to common issues with MonoMind">
+    <link rel="stylesheet" href="premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('div').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.textContent;
+                        this.textContent = 'Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>MonoMind - Troubleshooting Guide</h1>
+            <p>Solutions to common issues with MonoMind</p>
+        </header>
+
+        <nav class="nav-links">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                <li><a href="user-guide.html"><i class="fas fa-book-open"></i> User Guide</a></li>
+                <li><a href="api.html"><i class="fas fa-cogs"></i> API Reference</a></li>
+                <li><a href="developer-guide.html"><i class="fas fa-code"></i> Developer Guide</a></li>
+                <li><a href="visualization-guide.html"><i class="fas fa-chart-network"></i> Visualization</a></li>
+                <li><a href="plugin-guide.html"><i class="fas fa-plug"></i> Plugin Guide</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <h2>MonoMind Troubleshooting Guide</h2>
+<h3>Table of Contents</h3>
+1. <a href="#introduction">Introduction</a>
+2. <a href="#installation-issues">Installation Issues</a>
+3. <a href="#analyzer-problems">Analyzer Problems</a>
+4. <a href="#build-issues">Build Issues</a>
+5. <a href="#test-problems">Test Problems</a>
+6. <a href="#refactor-issues">Refactor Issues</a>
+7. <a href="#release-problems">Release Problems</a>
+8. <a href="#visualization-issues">Visualization Issues</a>
+9. <a href="#plugin-problems">Plugin Problems</a>
+10. <a href="#performance-issues">Performance Issues</a>
+11. <a href="#configuration-problems">Configuration Problems</a>
+12. <a href="#getting-help">Getting Help</a>
+<h3>Introduction</h3>
+<p>This guide helps you diagnose and resolve common issues with MonoMind. If you encounter problems, this guide will help you identify and fix them.</p>
+<h3>Installation Issues</h3>
+<h4>Go Installation Problems</h4>
+--Problem--: <code>go: command not found</code>  
+--Solution--:  
+1. Install Go from <a href="https://golang.org/dl/">https://golang.org/dl/</a>  
+2. Add Go to your PATH  
+3. Verify installation: <code>go version</code>  
+<h4>Build Errors</h4>
+--Problem--: Compilation fails  
+--Solution--:  
+1. Run <code>go mod tidy</code> to fetch dependencies  
+2. Check Go version compatibility  
+3. Clean build cache: <code>go clean -cache</code>  
+<h4>Permission Errors</h4>
+--Problem--: <code>Permission denied</code> when running <code>mono.exe</code>  
+--Solution--:  
+<ul>
+  <li>Windows: Right-click and run as administrator  </li>
+  <li>macOS/Linux: <code>chmod +x mono.exe</code>  </li>
+</ul>
+<h3>Analyzer Problems</h3>
+<h4>No Modules Found</h4>
+--Problem--: Analyzer reports 0 modules  
+--Solution--:  
+1. Check current directory: <code>pwd</code>  
+2. Verify supported file types (<code>.go</code>, <code>.js</code>, <code>.ts</code>, <code>.py</code>)  
+3. Check ignore patterns in config  
+4. Run with debug: <code>mono.exe --debug analyze</code>  
+<h4>Missing Dependencies</h4>
+--Problem--: Dependencies not detected correctly  
+--Solution--:  
+1. Check file extensions are supported  
+2. Verify import statements follow standard formats  
+3. Check for syntax errors in files  
+4. Ensure files are not in ignored directories  
+<h4>Slow Analysis</h4>
+--Problem--: Analysis takes too long  
+--Solution--:  
+1. Add large directories to ignore list  
+2. Reduce the number of supported languages  
+3. Run analysis on smaller subsets  
+4. Check for circular symbolic links  
+<h4>Incorrect Language Detection</h4>
+--Problem--: Files detected as wrong language  
+--Solution--:  
+1. Check file extensions  
+2. Verify language-specific import patterns  
+3. Update configuration to prioritize correct language  
+<h3>Build Issues</h3>
+<h4>Build Commands Not Found</h4>
+--Problem--: <code>make: command not found</code>  
+--Solution--:  
+1. Install build tools (<code>make</code>, <code>npm</code>, etc.)  
+2. Check PATH environment variable  
+3. Configure custom build commands in config  
+<h4>Build Failures</h4>
+--Problem--: Modules fail to build  
+--Solution--:  
+1. Check module-specific build requirements  
+2. Verify dependencies are installed  
+3. Run build manually to identify issues  
+4. Check build logs with <code>--debug</code> flag  
+<h4>Parallel Build Problems</h4>
+--Problem--: Parallel builds fail or are slower  
+--Solution--:  
+1. Reduce max concurrent builds in config  
+2. Check for resource contention  
+3. Disable parallel builds: <code>--parallel=false</code>  
+4. Ensure build tools support parallel execution  
+<h4>Dry Run Issues</h4>
+--Problem--: Dry run shows incorrect modules  
+--Solution--:  
+1. Verify dependency graph is accurate  
+2. Run full analysis before dry run  
+3. Check for cached analysis data  
+<h3>Test Problems</h3>
+<h4>Tests Not Found</h4>
+--Problem--: <code>No tests found</code>  
+--Solution--:  
+1. Check test file naming conventions  
+2. Verify test commands in configuration  
+3. Ensure test dependencies are installed  
+4. Run tests manually to verify they work  
+<h4>Test Failures</h4>
+--Problem--: Tests fail during execution  
+--Solution--:  
+1. Run failing tests manually  
+2. Check test environment setup  
+3. Verify test dependencies  
+4. Use <code>--dry-run</code> to preview test execution  
+<h4>Parallel Test Issues</h4>
+--Problem--: Parallel tests fail or are slow  
+--Solution--:  
+1. Reduce concurrent tests in config  
+2. Check for test isolation issues  
+3. Disable parallel execution  
+4. Ensure test framework supports parallel runs  
+<h4>Test Selection Problems</h4>
+--Problem--: Wrong tests selected for execution  
+--Solution--:  
+1. Verify dependency graph accuracy  
+2. Check impact analysis results  
+3. Run full test suite to verify selection logic  
+<h3>Refactor Issues</h3>
+<h4>Refactor Not Finding Targets</h4>
+--Problem--: <code>Identifier not found</code>  
+--Solution--:  
+1. Check spelling of identifier names  
+2. Verify files are in supported languages  
+3. Ensure files are not ignored  
+4. Run analysis before refactoring  
+<h4>Incorrect Refactoring</h4>
+--Problem--: Wrong identifiers renamed  
+--Solution--:  
+1. Use <code>--dry-run</code> to preview changes  
+2. Check scope of refactoring  
+3. Verify AST parsing is working correctly  
+4. Report issues with specific code patterns  
+<h4>Refactor Performance</h4>
+--Problem--: Refactoring takes too long  
+--Solution--:  
+1. Limit scope with <code>--file</code> flag  
+2. Reduce number of files to process  
+3. Check for very large files  
+4. Use SSD for better I/O performance  
+<h4>File Move Issues</h4>
+--Problem--: Files not moved correctly  
+--Solution--:  
+1. Check source and destination paths  
+2. Verify directory permissions  
+3. Ensure destination directories exist  
+4. Use <code>--dry-run</code> to preview moves  
+<h3>Release Problems</h3>
+<h4>Version Bumping Issues</h4>
+--Problem--: Version not updated correctly  
+--Solution--:  
+1. Check current version detection  
+2. Verify Git tag format  
+3. Ensure write permissions to files  
+4. Check version format in configuration  
+<h4>Changelog Generation Failures</h4>
+--Problem--: Changelog not generated  
+--Solution--:  
+1. Verify Git history exists  
+2. Check Git commit message format  
+3. Ensure Git is properly configured  
+4. Run with <code>--debug</code> for more information  
+<h4>Publishing Issues</h4>
+--Problem--: Release not published  
+--Solution--:  
+1. Check remote repository access  
+2. Verify authentication credentials  
+3. Ensure proper permissions  
+4. Test Git operations manually  
+<h4>Tag Creation Problems</h4>
+--Problem--: Git tags not created  
+--Solution--:  
+1. Check Git repository status  
+2. Verify tag naming conventions  
+3. Ensure Git is properly configured  
+4. Check for existing tags  
+<h3>Visualization Issues</h3>
+<h4>No Output Generated</h4>
+--Problem--: Empty or no visualization  
+--Solution--:  
+1. Run analysis first  
+2. Check for modules in repository  
+3. Verify supported file types  
+4. Use <code>--debug</code> for more information  
+<h4>HTML Visualization Problems</h4>
+--Problem--: HTML file not generated  
+--Solution--:  
+1. Check output file path permissions  
+2. Verify disk space  
+3. Ensure proper file extension  
+4. Check for template errors  
+<h4>Visualization Performance</h4>
+--Problem--: Visualization takes too long  
+--Solution--:  
+1. Limit repository size  
+2. Reduce number of modules  
+3. Use <code>--debug</code> to identify bottlenecks  
+4. Check for circular dependencies  
+<h4>Incorrect Relationships</h4>
+--Problem--: Wrong dependencies shown  
+--Solution--:  
+1. Verify analysis results  
+2. Check import statement parsing  
+3. Update language support  
+4. Report parsing issues  
+<h3>Plugin Problems</h3>
+<h4>Plugins Not Executing</h4>
+--Problem--: Plugins don't run  
+--Solution--:  
+1. Check plugin file permissions  
+2. Verify plugin directory configuration  
+3. Ensure proper file naming  
+4. Check plugin hooks match expected names  
+<h4>Plugin Errors</h4>
+--Problem--: Plugins fail with errors  
+--Solution--:  
+1. Run plugin manually to test  
+2. Check plugin dependencies  
+3. Verify environment variables  
+4. Use <code>--debug</code> to see plugin output  
+<h4>Plugin Performance</h4>
+--Problem--: Plugins slow down operations  
+--Solution--:  
+1. Optimize plugin code  
+2. Reduce plugin complexity  
+3. Run plugins in parallel if possible  
+4. Consider moving heavy operations outside hooks  
+<h4>Plugin Discovery Issues</h4>
+--Problem--: Plugins not found  
+--Solution--:  
+1. Check plugin directory path  
+2. Verify file naming conventions  
+3. Ensure plugins are executable  
+4. Check configuration file settings  
+<h3>Performance Issues</h3>
+<h4>Slow Startup</h4>
+--Problem--: MonoMind takes long to start  
+--Solution--:  
+1. Check for large repository analysis  
+2. Reduce number of supported languages  
+3. Add large directories to ignore list  
+4. Use SSD for better disk performance  
+<h4>High Memory Usage</h4>
+--Problem--: Excessive memory consumption  
+--Solution--:  
+1. Limit concurrent operations  
+2. Process smaller subsets of repository  
+3. Check for memory leaks in plugins  
+4. Monitor memory usage with system tools  
+<h4>CPU Usage Problems</h4>
+--Problem--: High CPU utilization  
+--Solution--:  
+1. Reduce parallel processing  
+2. Limit concurrent builds/tests  
+3. Check for infinite loops in plugins  
+4. Profile CPU usage with profiling tools  
+<h4>Disk I/O Issues</h4>
+--Problem--: Slow file operations  
+--Solution--:  
+1. Use SSD instead of HDD  
+2. Reduce file system operations  
+3. Check for network file systems  
+4. Monitor disk usage during operations  
+<h3>Configuration Problems</h3>
+<h4>Config File Not Loaded</h4>
+--Problem--: Configuration ignored  
+--Solution--:  
+1. Check config file location  
+2. Verify YAML syntax  
+3. Ensure proper file permissions  
+4. Use <code>--debug</code> to see config loading  
+<h4>Invalid Configuration</h4>
+--Problem--: <code>Invalid config</code> errors  
+--Solution--:  
+1. Validate YAML syntax  
+2. Check for typos in keys  
+3. Verify value types  
+4. Compare with example configuration  
+<h4>Configuration Precedence</h4>
+--Problem--: Wrong config values used  
+--Solution--:  
+1. Check config file search order  
+2. Verify environment variable names  
+3. Use <code>--debug</code> to see config values  
+4. Check for conflicting configurations  
+<h4>Default Values</h4>
+--Problem--: Unexpected default behavior  
+--Solution--:  
+1. Check documentation for defaults  
+2. Explicitly set values in config  
+3. Use <code>--help</code> to see default values  
+4. Report unclear default behavior  
+<h3>Getting Help</h3>
+<h4>Debugging Options</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>`
+<h4>Reporting Issues</h4>
+<p>When reporting problems, include:</p>
+<p>1. --Version--: <code>mono.exe --version</code>
+2. --Command--: Exact command run
+3. --Error--: Complete error message
+4. --Environment--: OS, Go version, etc.
+5. --Steps--: How to reproduce the issue
+6. --Expected--: What you expected to happen
+7. --Actual--: What actually happened</p>
+<h4>Community Support</h4>
+<ul>
+  <li>Check GitHub issues for similar problems</li>
+  <li>Join community forums or chat channels</li>
+  <li>Read documentation and guides</li>
+  <li>Contribute fixes for issues you encounter</li>
+</ul>
+<h4>Professional Support</h4>
+<p>For enterprise users:</p>
+<ul>
+  <li>Contact support team</li>
+  <li>Check SLA agreements</li>
+  <li>Review support documentation</li>
+  <li>Submit detailed support tickets</li>
+</ul>
+<p>By following this troubleshooting guide, you should be able to resolve most common issues with MonoMind. If problems persist, consider reaching out to the community or support channels for additional help.</p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a> |
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

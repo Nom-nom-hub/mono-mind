@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoMind - Developer Guide</title>
+    <meta name="description" content="Guide for developers contributing to MonoMind">
+    <link rel="stylesheet" href="premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('div').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.textContent;
+                        this.textContent = 'Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>MonoMind - Developer Guide</h1>
+            <p>Guide for developers contributing to MonoMind</p>
+        </header>
+
+        <nav class="nav-links">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                <li><a href="user-guide.html"><i class="fas fa-book-open"></i> User Guide</a></li>
+                <li><a href="api.html"><i class="fas fa-cogs"></i> API Reference</a></li>
+                <li><a href="developer-guide.html"><i class="fas fa-code"></i> Developer Guide</a></li>
+                <li><a href="visualization-guide.html"><i class="fas fa-chart-network"></i> Visualization</a></li>
+                <li><a href="plugin-guide.html"><i class="fas fa-plug"></i> Plugin Guide</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-icon">💻</span>
+                    Developer Guide
+                </h1>
+                <p class="hero-subtitle">Contribute to MonoMind development and plugin creation</p>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <span class="feature-dot"></span>
+                        <span>Project Architecture</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span class="feature-dot"></span>
+                        <span>Code Standards</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span class="feature-dot"></span>
+                        <span>Plugin Development</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span class="feature-dot"></span>
+                        <span>Testing & Quality</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="content-container">
+            <aside class="toc">
+                <div class="toc-sticky">
+                    <h3>Table of Contents</h3>
+                    <nav class="toc-nav">
+                        <a href="#introduction" class="toc-link">Introduction</a>
+                        <a href="#project-structure" class="toc-link">Project Structure</a>
+                        <a href="#architecture" class="toc-link">Architecture</a>
+                        <a href="#development-setup" class="toc-link">Development Setup</a>
+                        <a href="#code-style" class="toc-link">Code Style</a>
+                        <a href="#testing" class="toc-link">Testing</a>
+                        <a href="#adding-features" class="toc-link">Adding Features</a>
+                        <a href="#working-modules" class="toc-link">Working with Modules</a>
+                        <a href="#plugin-development" class="toc-link">Plugin Development</a>
+                        <a href="#documentation" class="toc-link">Documentation</a>
+                        <a href="#release-process" class="toc-link">Release Process</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <article class="content">
+                <section id="introduction" class="doc-section">
+                    <h2>Introduction</h2>
+                    <p>This guide is for developers who want to contribute to <strong>MonoMind</strong> or extend its functionality. It covers the project structure, architecture, and development practices.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🏗️</div>
+                            <h3>Modular Architecture</h3>
+                            <p>Well-structured codebase with clear separation of concerns</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🧪</div>
+                            <h3>Comprehensive Testing</h3>
+                            <p>Thorough test coverage with best practices</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔌</div>
+                            <h3>Plugin System</h3>
+                            <p>Extensible architecture for custom functionality</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📚</div>
+                            <h3>Documentation</h3>
+                            <p>Clear guidelines and comprehensive docs</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="project-structure" class="doc-section">
+                    <h2>Project Structure</h2>
+                    <div class="code-block">
+                        <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                    </div>
+                </section>
+
+                <section id="architecture" class="doc-section">
+                    <h2>Architecture</h2>
+
+                    <h3>Core Principles</h3>
+                    <div class="principles-grid">
+                        <div class="principle-item">
+                            <h4>Modularity</h4>
+                            <p>Each feature is implemented as a separate module</p>
+                        </div>
+                        <div class="principle-item">
+                            <h4>CLI-First</h4>
+                            <p>All functionality is accessible through the command line</p>
+                        </div>
+                        <div class="principle-item">
+                            <h4>Extensibility</h4>
+                            <p>Plugins can extend functionality without core changes</p>
+                        </div>
+                        <div class="principle-item">
+                            <h4>Language Agnostic</h4>
+                            <p>Supports multiple programming languages</p>
+                        </div>
+                        <div class="principle-item">
+                            <h4>Performance</h4>
+                            <p>Optimized for large repositories</p>
+                        </div>
+                    </div>
+
+                    <h3>Data Flow</h3>
+                    <div class="flow-diagram">
+                        <div class="flow-step">
+                            <div class="flow-number">1</div>
+                            <div class="flow-content">
+                                <strong>Analyzer</strong> scans repository and builds dependency graph
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-number">2</div>
+                            <div class="flow-content">
+                                <strong>Impact Engine</strong> predicts change effects
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-number">3</div>
+                            <div class="flow-content">
+                                <strong>Build/Test Orchestrator</strong> executes targeted operations
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-number">4</div>
+                            <div class="flow-content">
+                                <strong>Refactor Engine</strong> safely modifies code
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-number">5</div>
+                            <div class="flow-content">
+                                <strong>Release Manager</strong> handles versioning and publishing
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-number">6</div>
+                            <div class="flow-content">
+                                <strong>Visualization</strong> presents data in multiple formats
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-number">7</div>
+                            <div class="flow-content">
+                                <strong>Plugin System</strong> extends functionality through hooks
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Key Components</h3>
+                    <ul>
+                        <li><strong>CLI Layer</strong>: Cobra-based command interface</li>
+                        <li><strong>Core Modules</strong>: Independent packages for each feature</li>
+                        <li><strong>Configuration</strong>: YAML-based configuration system</li>
+                        <li><strong>Logging</strong>: Structured logging with Logrus</li>
+                        <li><strong>Plugin System</strong>: Hook-based extensibility</li>
+                    </ul>
+                </section>
+
+                <section id="development-setup" class="doc-section">
+                    <h2>Development Setup</h2>
+
+                    <h3>Prerequisites</h3>
+                    <ul>
+                        <li>Go 1.19 or higher</li>
+                        <li>Git</li>
+                        <li>Node.js (for JavaScript examples)</li>
+                        <li>Python (for Python examples)</li>
+                    </ul>
+
+                    <h3>Getting Started</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Development Workflow</h3>
+                    <div class="workflow-steps">
+                        <div class="step">1. Create a feature branch</div>
+                        <div class="step">2. Make changes</div>
+                        <div class="step">3. Add tests</div>
+                        <div class="step">4. Update documentation</div>
+                        <div class="step">5. Run tests</div>
+                        <div class="step">6. Commit changes</div>
+                        <div class="step">7. Push and create pull request</div>
+                    </div>
+                </section>
+
+                <section id="code-style" class="doc-section">
+                    <h2>Code Style</h2>
+
+                    <h3>Go Coding Standards</h3>
+                    <p>Follow the official Go coding standards:</p>
+                    <ul>
+                        <li>Use <code>gofmt</code> for formatting</li>
+                        <li>Write clear, concise comments</li>
+                        <li>Use meaningful variable names</li>
+                        <li>Keep functions focused and small</li>
+                    </ul>
+
+                    <h3>Naming Conventions</h3>
+                    <div class="naming-conventions">
+                        <div class="convention">
+                            <strong>Packages</strong>: lowercase, single word (e.g., <code>analyzer</code>)
+                        </div>
+                        <div class="convention">
+                            <strong>Functions</strong>: CamelCase (e.g., <code>AnalyzeRepo</code>)
+                        </div>
+                        <div class="convention">
+                            <strong>Variables</strong>: camelCase (e.g., <code>repoGraph</code>)
+                        </div>
+                        <div class="convention">
+                            <strong>Constants</strong>: UPPER_SNAKE_CASE (e.g., <code>MAX_CONCURRENT</code>)
+                        </div>
+                    </div>
+
+                    <h3>Error Handling</h3>
+                    <ul>
+                        <li>Always handle errors explicitly</li>
+                        <li>Use descriptive error messages</li>
+                        <li>Wrap errors with context when appropriate</li>
+                        <li>Return errors early when possible</li>
+                    </ul>
+
+                    <h3>Logging</h3>
+                    <ul>
+                        <li>Use the internal logger package</li>
+                        <li>Include relevant context in log messages</li>
+                        <li>Use appropriate log levels (debug, info, warn, error)</li>
+                        <li>Avoid logging sensitive information</li>
+                    </ul>
+                </section>
+
+                <section id="testing" class="doc-section">
+                    <h2>Testing</h2>
+
+                    <h3>Test Structure</h3>
+                    <p>Tests are organized by module:</p>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Writing Tests</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Running Tests</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Test Best Practices</h3>
+                    <ul>
+                        <li>Write tests for new functionality</li>
+                        <li>Use table-driven tests for multiple cases</li>
+                        <li>Mock external dependencies</li>
+                        <li>Test edge cases and error conditions</li>
+                        <li>Keep tests fast and focused</li>
+                    </ul>
+                </section>
+
+                <section id="adding-features" class="doc-section">
+                    <h2>Adding New Features</h2>
+
+                    <h3>Feature Development Process</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <strong>Design</strong>: Plan the feature and API
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <strong>Implement</strong>: Write the code
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <strong>Test</strong>: Add comprehensive tests
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <strong>Document</strong>: Update documentation
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <strong>Review</strong>: Get code review
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Creating a New Module</h3>
+                    <ol>
+                        <li>Create a new directory in <code>internal/</code></li>
+                        <li>Implement the core functionality</li>
+                        <li>Add a public API</li>
+                        <li>Write tests</li>
+                        <li>Add CLI command integration</li>
+                    </ol>
+
+                    <h3>Example Module Structure</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                </section>
+
+                <section id="working-modules" class="doc-section">
+                    <h2>Working with Modules</h2>
+
+                    <h3>Module Interface</h3>
+                    <p>Each module should follow a consistent pattern:</p>
+                    <ul>
+                        <li>Configuration struct</li>
+                        <li>Result struct</li>
+                        <li>Main processing function</li>
+                        <li>Helper functions as needed</li>
+                    </ul>
+
+                    <h3>Dependency Management</h3>
+                    <p>Modules should:</p>
+                    <ul>
+                        <li>Have minimal dependencies</li>
+                        <li>Use interfaces for external dependencies</li>
+                        <li>Avoid circular dependencies</li>
+                        <li>Handle errors gracefully</li>
+                    </ul>
+
+                    <h3>Concurrency</h3>
+                    <p>For performance-critical modules:</p>
+                    <ul>
+                        <li>Use goroutines for parallel processing</li>
+                        <li>Limit concurrent operations</li>
+                        <li>Handle context cancellation</li>
+                        <li>Use sync primitives when needed</li>
+                    </ul>
+                </section>
+
+                <section id="plugin-development" class="doc-section">
+                    <h2>Plugin Development</h2>
+
+                    <h3>Plugin System Overview</h3>
+                    <p>Plugins are external programs executed at specific hooks:</p>
+                    <ul>
+                        <li>Pre/Post build</li>
+                        <li>Pre/Post test</li>
+                        <li>Pre/Post release</li>
+                    </ul>
+
+                    <h3>Creating Plugins</h3>
+                    <p>Plugins can be written in any language:</p>
+
+                    <div class="plugin-examples">
+                        <div class="plugin-example">
+                            <h4>Bash Plugin</h4>
+                            <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                        </div>
+
+                        <div class="plugin-example">
+                            <h4>Python Plugin</h4>
+                            <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                        </div>
+                    </div>
+
+                    <h3>Plugin Best Practices</h3>
+                    <ul>
+                        <li>Handle errors gracefully</li>
+                        <li>Use exit codes appropriately</li>
+                        <li>Log important information</li>
+                        <li>Be fast and efficient</li>
+                        <li>Document plugin behavior</li>
+                    </ul>
+                </section>
+
+                <section id="documentation" class="doc-section">
+                    <h2>Documentation</h2>
+
+                    <h3>Documentation Structure</h3>
+                    <ul>
+                        <li><strong>README.md</strong>: Project overview</li>
+                        <li><strong>docs/README.md</strong>: User documentation</li>
+                        <li><strong>docs/API.md</strong>: API reference</li>
+                        <li><strong>docs/USER_GUIDE.md</strong>: User guide</li>
+                        <li><strong>docs/DEVELOPER_GUIDE.md</strong>: Developer guide (this document)</li>
+                    </ul>
+
+                    <h3>Writing Documentation</h3>
+                    <ul>
+                        <li>Use clear, simple language</li>
+                        <li>Include examples</li>
+                        <li>Keep it up to date</li>
+                        <li>Organize logically</li>
+                        <li>Use consistent formatting</li>
+                    </ul>
+
+                    <h3>Code Comments</h3>
+                    <ul>
+                        <li>Comment exported functions and types</li>
+                        <li>Explain complex logic</li>
+                        <li>Document assumptions</li>
+                        <li>Keep comments accurate</li>
+                    </ul>
+                </section>
+
+                <section id="release-process" class="doc-section">
+                    <h2>Release Process</h2>
+
+                    <h3>Versioning</h3>
+                    <p>MonoMind follows semantic versioning:</p>
+                    <ul>
+                        <li><strong>Major</strong>: Breaking changes</li>
+                        <li><strong>Minor</strong>: New features</li>
+                        <li><strong>Patch</strong>: Bug fixes</li>
+                    </ul>
+
+                    <h3>Release Steps</h3>
+                    <ol>
+                        <li>Update version in code</li>
+                        <li>Generate changelog</li>
+                        <li>Create Git tag</li>
+                        <li>Build binaries</li>
+                        <li>Create GitHub release</li>
+                        <li>Update documentation</li>
+                    </ol>
+
+                    <h3>Pre-release Checklist</h3>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <input type="checkbox" disabled> All tests pass
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" disabled> Documentation is up to date
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" disabled> Code is reviewed
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" disabled> Version is updated
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" disabled> Changelog is generated
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" disabled> Binaries build successfully
+                        </div>
+                    </div>
+
+                    <h3>Post-release</h3>
+                    <ul>
+                        <li>Verify release on GitHub</li>
+                        <li>Update version in development</li>
+                        <li>Announce release</li>
+                        <li>Monitor for issues</li>
+                    </ul>
+                </section>
+            </article>
+        </div>
+    </main>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a> |
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

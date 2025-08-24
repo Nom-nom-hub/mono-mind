@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoMind - User Guide</title>
+    <meta name="description" content="Complete guide to using MonoMind">
+    <link rel="stylesheet" href="premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('div').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.textContent;
+                        this.textContent = 'Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>MonoMind - User Guide</h1>
+            <p>Complete guide to using MonoMind</p>
+        </header>
+
+        <nav class="nav-links">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                <li><a href="user-guide.html"><i class="fas fa-book-open"></i> User Guide</a></li>
+                <li><a href="api.html"><i class="fas fa-cogs"></i> API Reference</a></li>
+                <li><a href="developer-guide.html"><i class="fas fa-code"></i> Developer Guide</a></li>
+                <li><a href="visualization-guide.html"><i class="fas fa-chart-network"></i> Visualization</a></li>
+                <li><a href="plugin-guide.html"><i class="fas fa-plug"></i> Plugin Guide</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-icon">📖</span>
+                    User Guide
+                </h1>
+                <p class="hero-subtitle">Complete reference for all MonoMind features and commands</p>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <span class="feature-dot"></span>
+                        <span>Repository Analysis</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span class="feature-dot"></span>
+                        <span>Impact Analysis</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span class="feature-dot"></span>
+                        <span>Build & Test Automation</span>
+                    </div>
+                    <div class="hero-feature">
+                        <span class="feature-dot"></span>
+                        <span>Safe Refactoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="content-container">
+            <aside class="toc">
+                <div class="toc-sticky">
+                    <h3>Table of Contents</h3>
+                    <nav class="toc-nav">
+                        <a href="#introduction" class="toc-link">Introduction</a>
+                        <a href="#installation" class="toc-link">Installation</a>
+                        <a href="#quick-start" class="toc-link">Quick Start</a>
+                        <a href="#repository-analysis" class="toc-link">Repository Analysis</a>
+                        <a href="#impact-analysis" class="toc-link">Impact Analysis</a>
+                        <a href="#building-projects" class="toc-link">Building Projects</a>
+                        <a href="#testing" class="toc-link">Testing</a>
+                        <a href="#refactoring" class="toc-link">Refactoring</a>
+                        <a href="#release-management" class="toc-link">Release Management</a>
+                        <a href="#visualization" class="toc-link">Visualization</a>
+                        <a href="#configuration" class="toc-link">Configuration</a>
+                        <a href="#plugins" class="toc-link">Plugins</a>
+                        <a href="#best-practices" class="toc-link">Best Practices</a>
+                        <a href="#troubleshooting" class="toc-link">Troubleshooting</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <article class="content">
+                <section id="introduction" class="doc-section">
+                    <h2>Introduction</h2>
+                    <p>Welcome to <strong>MonoMind</strong>, your AI-powered assistant for managing complex codebases! This guide will help you get the most out of MonoMind's powerful features.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3>Repository Analysis</h3>
+                            <p>Understand complex repository structures with dependency graphs</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Impact Analysis</h3>
+                            <p>Predict the impact of code changes before making them</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Build Optimization</h3>
+                            <p>Optimize build and test processes with intelligent caching</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔄</div>
+                            <h3>Safe Refactoring</h3>
+                            <p>Refactor code safely with AST-based analysis</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📦</div>
+                            <h3>Release Management</h3>
+                            <p>Automate release management and changelog generation</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔌</div>
+                            <h3>Plugin System</h3>
+                            <p>Extend functionality with custom plugins</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="installation" class="doc-section">
+                    <h2>Installation</h2>
+
+                    <div class="requirements">
+                        <h3>System Requirements</h3>
+                        <ul>
+                            <li>Windows, macOS, or Linux</li>
+                            <li>Go 1.19 or higher</li>
+                            <li>Git (for version control features)</li>
+                        </ul>
+                    </div>
+
+                    <div class="install-options">
+                        <h3>Installing MonoMind</h3>
+
+                        <div class="option">
+                            <h4>Option 1: Pre-built Binary</h4>
+                            <p>Download the latest release from GitHub and place it in your PATH.</p>
+                        </div>
+
+                        <div class="option">
+                            <h4>Option 2: Build from Source</h4>
+                            <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="quick-start" class="doc-section">
+                    <h2>Quick Start</h2>
+                    <p>Typical workflow with MonoMind:</p>
+
+                    <div class="workflow">
+                        <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                    </div>
+                </section>
+
+                <section id="repository-analysis" class="doc-section">
+                    <h2>Repository Analysis</h2>
+
+                    <h3>Understanding the Analyzer</h3>
+                    <p>The analyzer scans your repository to build a dependency graph. This graph is the foundation for all MonoMind features.</p>
+
+                    <h3>Running Analysis</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Output Formats</h3>
+                    <div class="format-options">
+                        <div class="format-option">
+                            <strong>Tree</strong>: Hierarchical view (default)
+                        </div>
+                        <div class="format-option">
+                            <strong>ASCII</strong>: Box-style diagram
+                        </div>
+                        <div class="format-option">
+                            <strong>Horizontal</strong>: Linear view
+                        </div>
+                        <div class="format-option">
+                            <strong>HTML</strong>: Interactive web page
+                        </div>
+                    </div>
+
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                </section>
+
+                <section id="impact-analysis" class="doc-section">
+                    <h2>Impact Analysis</h2>
+
+                    <h3>What is Impact Analysis?</h3>
+                    <p>Predicts which modules and tests will be affected by changes to a file. Helps you:</p>
+                    <ul>
+                        <li>Focus testing efforts</li>
+                        <li>Understand scope of changes</li>
+                        <li>Plan refactorings</li>
+                    </ul>
+
+                    <h3>Running Impact Analysis</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Interpreting Results</h3>
+                    <ul>
+                        <li><strong>Directly affected modules</strong></li>
+                        <li><strong>Indirectly affected modules</strong> (via dependencies)</li>
+                        <li><strong>Tests that should be run</strong></li>
+                    </ul>
+                </section>
+
+                <section id="building-projects" class="doc-section">
+                    <h2>Building Projects</h2>
+
+                    <h3>Incremental Builds</h3>
+                    <p>Only rebuilds modules that have changed or depend on changed modules.</p>
+
+                    <h3>Basic Build</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Parallel Builds</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Build Configuration</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                </section>
+
+                <section id="testing" class="doc-section">
+                    <h2>Testing</h2>
+
+                    <h3>Intelligent Test Execution</h3>
+                    <p>Runs tests only for affected modules, saving time and resources.</p>
+
+                    <h3>Running Tests</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Test Configuration</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                </section>
+
+                <section id="refactoring" class="doc-section">
+                    <h2>Refactoring</h2>
+
+                    <h3>Safe Refactoring</h3>
+                    <p>AST parsing ensures all references are updated correctly.</p>
+
+                    <h3>Renaming Identifiers</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Moving Files</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Supported Languages</h3>
+                    <ul>
+                        <li><strong>Go</strong> (full AST)</li>
+                        <li><strong>JavaScript/TypeScript</strong> (regex-based)</li>
+                        <li><strong>Python</strong> (regex-based)</li>
+                        <li><strong>More coming soon</strong></li>
+                    </ul>
+                </section>
+
+                <section id="release-management" class="doc-section">
+                    <h2>Release Management</h2>
+
+                    <h3>Automated Releases</h3>
+                    <p>Handles version bumping, changelog generation, and publishing.</p>
+
+                    <h3>Creating Releases</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Version Bumping</h3>
+                    <ul>
+                        <li><code>--patch</code>: Bug fixes</li>
+                        <li><code>--minor</code>: Backward-compatible new features</li>
+                        <li><code>--major</code>: Breaking changes</li>
+                    </ul>
+
+                    <h3>Changelog Generation</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                </section>
+
+                <section id="visualization" class="doc-section">
+                    <h2>Visualization</h2>
+
+                    <div class="viz-options">
+                        <div class="viz-option">
+                            <h4>Tree View</h4>
+                            <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                        </div>
+
+                        <div class="viz-option">
+                            <h4>ASCII Diagram</h4>
+                            <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                        </div>
+
+                        <div class="viz-option">
+                            <h4>Horizontal View</h4>
+                            <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                        </div>
+
+                        <div class="viz-option">
+                            <h4>HTML Export</h4>
+                            <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="configuration" class="doc-section">
+                    <h2>Configuration</h2>
+
+                    <h3>Configuration File Locations</h3>
+                    <ol>
+                        <li><code>configs/config.yaml</code></li>
+                        <li><code>config.yaml</code></li>
+                        <li><code>.mono.yaml</code></li>
+                    </ol>
+
+                    <h3>Sample Configuration</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Environment Variables</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                </section>
+
+                <section id="plugins" class="doc-section">
+                    <h2>Plugins</h2>
+
+                    <h3>Extending Functionality</h3>
+                    <p>Plugins add features without modifying core code.</p>
+
+                    <h3>Plugin Directory</h3>
+                    <p><code>plugins/</code> in your project.</p>
+
+                    <h3>Plugin Hooks</h3>
+                    <ul>
+                        <li><code>pre-build</code>, <code>post-build</code></li>
+                        <li><code>pre-test</code>, <code>post-test</code></li>
+                        <li><code>pre-release</code>, <code>post-release</code></li>
+                    </ul>
+
+                    <h3>Example Plugin</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Plugin Configuration</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+                </section>
+
+                <section id="best-practices" class="doc-section">
+                    <h2>Best Practices</h2>
+
+                    <h3>Repository Structure</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Dependency Management</h3>
+                    <ul>
+                        <li>Minimize circular dependencies</li>
+                        <li>Use explicit imports</li>
+                        <li>Keep modules focused</li>
+                    </ul>
+
+                    <h3>Version Control</h3>
+                    <ul>
+                        <li>Commit frequently</li>
+                        <li>Use feature branches</li>
+                        <li>Tag releases consistently</li>
+                    </ul>
+
+                    <h3>Testing</h3>
+                    <ul>
+                        <li>Write tests for new features</li>
+                        <li>Run tests regularly</li>
+                        <li>Use impact analysis</li>
+                    </ul>
+                </section>
+
+                <section id="troubleshooting" class="doc-section">
+                    <h2>Troubleshooting</h2>
+
+                    <h3>Common Issues</h3>
+
+                    <div class="troubleshooting-grid">
+                        <div class="trouble-item">
+                            <h4>Analyzer Not Finding Modules</h4>
+                            <ul>
+                                <li>Check file extensions</li>
+                                <li>Verify ignored directories</li>
+                                <li>Use <code>--debug</code></li>
+                            </ul>
+                        </div>
+
+                        <div class="trouble-item">
+                            <h4>Builds Failing</h4>
+                            <ul>
+                                <li>Check build commands</li>
+                                <li>Verify dependencies</li>
+                                <li>Use <code>--dry-run</code></li>
+                            </ul>
+                        </div>
+
+                        <div class="trouble-item">
+                            <h4>Tests Not Running</h4>
+                            <ul>
+                                <li>Ensure test commands are correct</li>
+                                <li>Verify affected modules</li>
+                                <li>Use <code>--verbose</code></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Getting Help</h3>
+                    <div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+
+                    <h3>Reporting Issues</h3>
+                    <ol>
+                        <li>Check GitHub issues</li>
+                        <li>Include version info</li>
+                        <li>Provide steps to reproduce</li>
+                        <li>Include error logs</li>
+                    </ol>
+                </section>
+            </article>
+        </div>
+    </main>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a> |
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

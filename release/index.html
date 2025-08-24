@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoMind Releases</title>
+    <link rel="stylesheet" href="../docs/premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>MonoMind Releases</h1>
+            <p>Download the latest version of MonoMind for your platform</p>
+        </header>
+
+        <section>
+            <h2><i class="fas fa-download"></i> Available Releases</h2>
+            <p>Download the binary for your operating system:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <i class="fab fa-windows" style="font-size: 3em; color: var(--accent-primary);"></i>
+                        <h3 style="margin: 1rem 0 0 0;">Windows</h3>
+                    </div>
+                    <ul style="list-style: none; padding: 0; text-align: center;">
+                        <li style="margin: 1rem 0;">
+                            <a href="mono-v0.1.0-windows-amd64.exe" class="cta-button" style="display: inline-block; padding: 0.75rem 1.5rem;">
+                                <i class="fas fa-download"></i> Download (AMD64)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <i class="fab fa-apple" style="font-size: 3em; color: var(--accent-secondary);"></i>
+                        <h3 style="margin: 1rem 0 0 0;">macOS</h3>
+                    </div>
+                    <ul style="list-style: none; padding: 0; text-align: center;">
+                        <li style="margin: 1rem 0;">
+                            <a href="mono-v0.1.0-darwin-amd64" class="cta-button" style="display: inline-block; padding: 0.75rem 1.5rem;">
+                                <i class="fas fa-download"></i> Download (AMD64)
+                            </a>
+                        </li>
+                        <li style="margin: 1rem 0;">
+                            <a href="mono-v0.1.0-darwin-arm64" class="cta-button" style="display: inline-block; padding: 0.75rem 1.5rem;">
+                                <i class="fas fa-download"></i> Download (ARM64)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <i class="fab fa-linux" style="font-size: 3em; color: var(--accent-tertiary);"></i>
+                        <h3 style="margin: 1rem 0 0 0;">Linux</h3>
+                    </div>
+                    <ul style="list-style: none; padding: 0; text-align: center;">
+                        <li style="margin: 1rem 0;">
+                            <a href="mono-v0.1.0-linux-amd64" class="cta-button" style="display: inline-block; padding: 0.75rem 1.5rem;">
+                                <i class="fas fa-download"></i> Download (AMD64)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-card" style="margin-top: 2rem;">
+                <h3><i class="fas fa-info-circle"></i> Installation Instructions</h3>
+                <div class="code-block-container" style="position: relative; margin: 1.5rem 0;">
+                    <button class="copy-button" style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre style="margin: 0; border-radius: var(--border-radius);"><code class="language-bash"># Make executable (Linux/macOS)
+chmod +x mono-v0.1.0-linux-amd64
+
+# Run
+./mono-v0.1.0-linux-amd64 --help</code></pre>
+                </div>
+                
+                <div class="code-block-container" style="position: relative; margin: 1.5rem 0;">
+                    <button class="copy-button" style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                    <pre style="margin: 0; border-radius: var(--border-radius);"><code class="language-powershell"># Run (Windows)
+.\mono-v0.1.0-windows-amd64.exe --help</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <footer style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-tertiary);">
+            <p>&copy; 2025 MonoMind. Built with <i class="fas fa-heart" style="color: var(--accent-tertiary);"></i> for monorepo management.</p>
+            <p>
+                <a href="../docs/index.html"><i class="fas fa-book"></i> Documentation</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('.code-block-container').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

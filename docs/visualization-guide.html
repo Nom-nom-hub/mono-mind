@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoMind - Visualization Guide</title>
+    <meta name="description" content="How to use MonoMind's visualization features">
+    <link rel="stylesheet" href="premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('div').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.textContent;
+                        this.textContent = 'Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>MonoMind - Visualization Guide</h1>
+            <p>How to use MonoMind's visualization features</p>
+        </header>
+
+        <nav class="nav-links">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                <li><a href="user-guide.html"><i class="fas fa-book-open"></i> User Guide</a></li>
+                <li><a href="api.html"><i class="fas fa-cogs"></i> API Reference</a></li>
+                <li><a href="developer-guide.html"><i class="fas fa-code"></i> Developer Guide</a></li>
+                <li><a href="visualization-guide.html"><i class="fas fa-chart-network"></i> Visualization</a></li>
+                <li><a href="plugin-guide.html"><i class="fas fa-plug"></i> Plugin Guide</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <h2>MonoMind Visualization Guide</h2>
+<h3>Table of Contents</h3>
+1. <a href="#introduction">Introduction</a>
+2. <a href="#visualization-types">Visualization Types</a>
+3. <a href="#tree-visualization">Tree Visualization</a>
+4. <a href="#ascii-visualization">ASCII Visualization</a>
+5. <a href="#horizontal-visualization">Horizontal Visualization</a>
+6. <a href="#html-visualization">HTML Visualization</a>
+7. <a href="#customizing-visualizations">Customizing Visualizations</a>
+8. <a href="#interpreting-results">Interpreting Results</a>
+9. <a href="#best-practices">Best Practices</a>
+<h3>Introduction</h3>
+This guide explains how to use MonoMind's visualization features to understand your repository's structure and dependencies.
+<h3>Visualization Types</h3>
+MonoMind provides several visualization formats:
+<h4>Tree View</h4>
+<ul>
+  <li>Hierarchical representation of modules and dependencies</li>
+  <li>Easy to understand nested relationships</li>
+  <li>Ideal for terminal workflows</li>
+</ul>
+<h4>ASCII View</h4>
+<ul>
+  <li>Box-style diagram</li>
+  <li>Visual separation of modules</li>
+  <li>Good for simple terminal displays</li>
+</ul>
+<h4>Horizontal View</h4>
+<ul>
+  <li>Linear module representation</li>
+  <li>Shows relationships in a flow format</li>
+  <li>Good for understanding data flow</li>
+</ul>
+<h4>HTML View</h4>
+<ul>
+  <li>Interactive web-based visualization</li>
+  <li>Rich formatting and styling</li>
+  <li>Shareable in browsers</li>
+  <li>Useful for presentations and documentation</li>
+</ul>
+<h3>Tree Visualization</h3>
+<h4>Basic Usage</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>`
+<h4>Output Example</h4>
+<code></code>`
+Dependency Graph:
+=================
+📁 api (go)
+  └─ depends on: shared
+  └─ used by: web
+<p>📁 web (javascript)
+  └─ depends on: api, shared</p>
+<p>📁 shared (go)
+  └─ used by: api, web</p>
+<p>📁 mobile (typescript)
+  └─ depends on: shared
+<code></code>`</p>
+<h4>Features</h4>
+<ul>
+  <li>Module names with language indicators</li>
+  <li>Clear dependency relationships</li>
+  <li>Reverse dependency tracking (<code>used by</code>)</li>
+  <li>File type icons</li>
+</ul>
+<h3>ASCII Visualization</h3>
+<h4>Basic Usage</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Output Example</h4>
+<code></code>`
+Dependency Graph (ASCII):
+========================
++-----------------------------+
+| api                         |
+| (go)                        |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| shared                      |
+| (go)                        |
++-----------------------------+
+<p>+-----------------------------+
+| web                         |
+| (javascript)                |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| api                         |
+| (go)                        |
++-----------------------------+
+<code></code>`</p>
+<h4>Features</h4>
+<ul>
+  <li>Box-style module representation</li>
+  <li>Clear directional arrows</li>
+  <li>Language indicators</li>
+  <li>Visual separation of components</li>
+</ul>
+<h3>Horizontal Visualization</h3>
+<h4>Basic Usage</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Output Example</h4>
+<code></code>`
+Dependency Graph (Horizontal):
+==============================
+Modules: api -> web -> shared -> mobile
+<p>Dependencies:
+  api (go):
+    -> shared
+  web (javascript):
+    -> api
+    -> shared
+  shared (go):
+  mobile (typescript):
+    -> shared
+<code></code>`</p>
+<h4>Features</h4>
+<ul>
+  <li>Linear module flow</li>
+  <li>Compact representation</li>
+  <li>Clear dependency listing</li>
+  <li>Good for sequential relationships</li>
+</ul>
+<h3>HTML Visualization</h3>
+<h4>Basic Usage</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Features</h4>
+<ul>
+  <li>Interactive web page</li>
+  <li>Professional CSS styling</li>
+  <li>Hover effects and visual enhancements</li>
+  <li>Shareable and viewable in any browser</li>
+  <li>Printable and presentable</li>
+  <li>Embeddable in documentation</li>
+</ul>
+<h4>HTML Output Structure</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    <div class="module-language">(go)</div>
+            <div class="dependencies">
+                <strong>Dependencies:</strong>
+                <div class="dependency">shared</div>
+            </div>
+            <div class="dependents">
+                <strong>Used by:</strong>
+                <div class="dependent">web</div>
+            </div>
+        </div>
+        <!-- More modules -->
+    </div>
+</body>
+</html>
+</code></pre>
+                </div>
+                </div>
+<h4>Customization</h4>
+<p>Modify the HTML template in the source code or post-process the generated HTML.</p>
+<h3>Customizing Visualizations</h3>
+<h4>Output Files</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Combining with Other Commands</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Automation Example</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h3>Interpreting Results</h3>
+<h4>Understanding Dependencies</h4>
+<ul>
+  <li>--Dependencies--: Modules this module depends on</li>
+  <li>--Dependents--: Modules that depend on this module</li>
+  <li>--Circular Dependencies--: Avoid when possible</li>
+  <li>--Orphan Modules--: Modules with no dependencies or dependents</li>
+</ul>
+<h4>Identifying Issues</h4>
+<ul>
+  <li>Too many dependencies → Module may be overloaded</li>
+  <li>Too many dependents → Module may be a bottleneck</li>
+  <li>Circular dependencies → Can break build/test processes</li>
+  <li>Orphan modules → May be unused or poorly integrated</li>
+</ul>
+<h4>Making Decisions</h4>
+<p>Use visualizations to:</p>
+<ul>
+  <li>Plan refactorings</li>
+  <li>Identify optimization opportunities</li>
+  <li>Understand change impact</li>
+  <li>Communicate architecture to the team</li>
+</ul>
+<h3>Best Practices</h3>
+<h4>When to Use Each Visualization</h4>
+<p>#### Tree View</p>
+<ul>
+  <li>Best for hierarchical relationships</li>
+  <li>Terminal-based workflows</li>
+</ul>
+<p>#### ASCII View</p>
+<ul>
+  <li>Best for simple boxes and arrows</li>
+  <li>Quick terminal viewing</li>
+</ul>
+<p>#### Horizontal View</p>
+<ul>
+  <li>Best for linear data flow</li>
+  <li>Documentation and analysis</li>
+</ul>
+<p>#### HTML View</p>
+<ul>
+  <li>Best for professional presentations</li>
+  <li>Documentation, reports, and team sharing</li>
+</ul>
+<h4>Regular Visualization Updates</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Version Control</h4>
+<ul>
+  <li>Commit visualizations for key releases</li>
+  <li>Compare outputs over time</li>
+  <li>Include in architectural docs</li>
+</ul>
+<h4>Sharing Visualizations</h4>
+<ul>
+  <li>Embed HTML visualizations in documentation</li>
+  <li>Present tree views in meetings</li>
+  <li>Use horizontal views for onboarding</li>
+  <li>Include visualizations in project wikis</li>
+</ul>
+<h4>Automation Tips</h4>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Integration with Documentation</h4>
+<ul>
+  <li>Include visualizations in README files</li>
+  <li>Add to project wikis</li>
+  <li>Use in architectural decision records</li>
+  <li>Include in onboarding documentation</li>
+</ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a> |
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

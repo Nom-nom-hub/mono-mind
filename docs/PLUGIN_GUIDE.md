@@ -40,22 +40,22 @@ By default, MonoMind looks for plugins in the `plugins/` directory in your proje
 
 ### Available Hooks
 
-- --pre-analyze--: Before repository analysis  
-- --post-analyze--: After repository analysis  
-- --pre-build--: Before builds  
-- --post-build--: After builds  
-- --pre-test--: Before tests  
-- --post-test--: After tests  
-- --pre-refactor--: Before refactoring  
-- --post-refactor--: After refactoring  
-- --pre-release--: Before releases  
-- --post-release--: After releases  
+- `pre-analyze`: Before repository analysis
+- `post-analyze`: After repository analysis
+- `pre-build`: Before builds
+- `post-build`: After builds
+- `pre-test`: Before tests
+- `post-test`: After tests
+- `pre-refactor`: Before refactoring
+- `post-refactor`: After refactoring
+- `pre-release`: Before releases
+- `post-release`: After releases
 
 ### Hook Execution Order
 
-1. `pre--` hooks execute before the main operation  
-2. Main operation executes  
-3. `post--` hooks execute after the main operation  
+1. `pre-*` hooks execute before the main operation
+2. Main operation executes
+3. `post-*` hooks execute after the main operation
 
 ### Hook Context
 
@@ -89,10 +89,10 @@ exit 0
 
 ### Required Elements
 
-1. --Shebang-- (for script plugins): `#!/bin/bash`, `#!/usr/bin/env python3`, etc.
-2. --Executable permissions--: `chmod +x plugin-file`
-3. --Proper exit codes--: 0 for success, non-zero for errors
-4. --Error handling--: Handle errors gracefully
+1. **Shebang** (for script plugins): `#!/bin/bash`, `#!/usr/bin/env python3`, etc.
+2. **Executable permissions**: `chmod +x plugin-file`
+3. **Proper exit codes**: 0 for success, non-zero for errors
+4. **Error handling**: Handle errors gracefully
 
 ### Environment Variables
 
@@ -342,10 +342,10 @@ console.log('Release check passed');
 
 ### Sharing Plugins
 
-1. --GitHub Gists--: Share single-file plugins
-2. --GitHub Repositories--: Share complex plugin collections
-3. --Package Managers--: Distribute through npm, PyPI, etc.
-4. --Direct Download--: Host plugins on your website
+1. **GitHub Gists**: Share single-file plugins
+2. **GitHub Repositories**: Share complex plugin collections
+3. **Package Managers**: Distribute through npm, PyPI, etc.
+4. **Direct Download**: Host plugins on your website
 
 ### Plugin Collections
 
@@ -375,7 +375,7 @@ Provide an installation script for your plugins:
 mkdir -p plugins
 curl -o plugins/pre-build.sh https://example.com/plugins/pre-build.sh
 curl -o plugins/post-build.sh https://example.com/plugins/post-build.sh
-chmod +x plugins/-.sh
+chmod +x plugins/*.sh
 
 echo "Plugins installed successfully"
 ```

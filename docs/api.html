@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonoMind - API Reference</title>
+    <meta name="description" content="Technical documentation for the MonoMind API">
+    <link rel="stylesheet" href="premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('div').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.textContent;
+                        this.textContent = 'Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.textContent = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1>MonoMind - API Reference</h1>
+            <p>Technical documentation for the MonoMind API</p>
+        </header>
+
+        <nav class="nav-links">
+            <h3><i class="fas fa-book"></i> Documentation</h3>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="quick-start.html"><i class="fas fa-rocket"></i> Quick Start</a></li>
+                <li><a href="user-guide.html"><i class="fas fa-book-open"></i> User Guide</a></li>
+                <li><a href="api.html"><i class="fas fa-cogs"></i> API Reference</a></li>
+                <li><a href="developer-guide.html"><i class="fas fa-code"></i> Developer Guide</a></li>
+                <li><a href="visualization-guide.html"><i class="fas fa-chart-network"></i> Visualization</a></li>
+                <li><a href="plugin-guide.html"><i class="fas fa-plug"></i> Plugin Guide</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <h2>MonoMind API Documentation</h2>
+<h3>Table of Contents</h3>
+1. <a href="#overview">Overview</a>
+2. <a href="#module-structure">Module Structure</a>
+3. <a href="#analyzer-api">Analyzer API</a>
+4. <a href="#build-api">Build API</a>
+5. <a href="#impact-api">Impact API</a>
+6. <a href="#refactor-api">Refactor API</a>
+7. <a href="#release-api">Release API</a>
+8. <a href="#test-api">Test API</a>
+9. <a href="#visualization-api">Visualization API</a>
+10. <a href="#plugin-api">Plugin API</a>
+<h3>Overview</h3>
+<p>This document provides detailed API documentation for MonoMind's internal modules.  
+These APIs can be used to extend MonoMind's functionality or integrate it into other tools.</p>
+<h3>Module Structure</h3>
+<p>MonoMind is organized into several internal modules:</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>`
+<h3>Analyzer API</h3>
+<h4>Types</h4>
+<p>#### Module</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<p>#### RepoGraph</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<h4>Functions</h4>
+<p>#### AnalyzeRepo</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<p>Scans the repository and builds a dependency graph.</p>
+<p>Parameters:</p>
+<ul>
+  <li><code>rootPath</code>: Path to the repository root</li>
+</ul>
+<p>Returns:</p>
+<ul>
+  <li><code>-RepoGraph</code>: The dependency graph</li>
+  <li><code>error</code>: Any error that occurred</li>
+</ul>
+<p>#### GetModuleDependencies</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<p>Returns the dependencies of a specific module.</p>
+<p>Parameters:</p>
+<ul>
+  <li><code>moduleName</code>: Name of the module</li>
+</ul>
+<p>Returns:</p>
+<ul>
+  <li><code>[]string</code>: List of dependencies</li>
+</ul>
+<p>#### GetDependentModules</p>
+<div style="position: relative; margin: 1.5rem 0;">
+                    </div>
+<p>Returns modules that depend on a specific module.</p>
+<p>Parameters:</p>
+<ul>
+  <li><code>moduleName</code>: Name of the module</li>
+</ul>
+<p>Returns:</p>
+<ul>
+  <li><code>[]string</code>: List of dependent modules</li>
+</ul>
+#
+        </section>
+
+        <footer>
+            <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a> |
+                <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - MonoMind</title>
+    <link rel="stylesheet" href="premium-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Copy button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event to all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const preElement = this.closest('.code-block-container').querySelector('pre');
+                    const codeElement = preElement.querySelector('code');
+                    const textToCopy = codeElement ? codeElement.textContent : preElement.textContent;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Show feedback
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        this.style.background = 'var(--accent-tertiary)';
+                        
+                        // Reset after 2 seconds
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.background = 'var(--accent-primary)';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <h1><i class="fas fa-exclamation-triangle"></i> 404</h1>
+            <p>Page Not Found</p>
+        </header>
+
+        <section style="text-align: center; padding: 3rem;">
+            <h2 style="font-size: 2.5em; margin-bottom: 1.5rem;">Oops! The page you're looking for doesn't exist.</h2>
+            <p style="font-size: 1.2em; margin-bottom: 2rem; color: var(--text-secondary);">
+                The page may have been moved, deleted, or the URL might be incorrect.
+            </p>
+            <div style="margin: 2rem 0;">
+                <a href="index.html" class="cta-button">Return to Homepage</a>
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues" class="cta-button secondary">Report Issue</a>
+            </div>
+        </section>
+
+        <section class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-book"></i></div>
+                <h3>Documentation</h3>
+                <p>Explore our comprehensive documentation to learn more about MonoMind.</p>
+                <a href="index.html" class="cta-button">View Docs</a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                <h3>Quick Start</h3>
+                <p>Get up and running with MonoMind in minutes with our quick start guide.</p>
+                <a href="quick-start.html" class="cta-button">Get Started</a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-github"></i></div>
+                <h3>GitHub</h3>
+                <p>Visit our GitHub repository for source code, issues, and discussions.</p>
+                <a href="https://github.com/nom-nom-hub/mono-mind" class="cta-button">View on GitHub</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 MonoMind. Built with <i class="fas fa-heart" style="color: var(--accent-tertiary);"></i> for monorepo management.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind"><i class="fab fa-github"></i> View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues"><i class="fas fa-bug"></i> Report Issues</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
