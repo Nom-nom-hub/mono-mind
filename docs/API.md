@@ -1,6 +1,7 @@
 # MonoMind API Documentation
 
 ## Table of Contents
+
 1. [Overview](#overview)
 2. [Module Structure](#module-structure)
 3. [Analyzer API](#analyzer-api)
@@ -14,13 +15,15 @@
 
 ## Overview
 
-This document provides detailed API documentation for MonoMind's internal modules. These APIs can be used to extend MonoMind's functionality or integrate it into other tools.
+This document provides detailed API documentation for MonoMind's internal
+modules. These APIs can be used to extend MonoMind's functionality or
+integrate it into other tools.
 
 ## Module Structure
 
 MonoMind is organized into several internal modules:
 
-```
+```bash
 internal/
 ├── analyzer/     # Repository analysis and dependency graph
 ├── build/        # Build orchestration
@@ -39,6 +42,7 @@ internal/
 ### Types
 
 #### Module
+
 ```go
 type Module struct {
     Name          string   `json:"name"`
@@ -50,6 +54,7 @@ type Module struct {
 ```
 
 #### RepoGraph
+
 ```go
 type RepoGraph struct {
     Modules map[string]Module   `json:"modules"`
@@ -60,40 +65,52 @@ type RepoGraph struct {
 ### Functions
 
 #### AnalyzeRepo
+
 ```go
 func AnalyzeRepo(rootPath string) (*RepoGraph, error)
 ```
+
 Scans the repository and builds a dependency graph.
 
 Parameters:
+
 - `rootPath`: Path to the repository root
 
 Returns:
+
 - `*RepoGraph`: The dependency graph
 - `error`: Any error that occurred
 
 #### GetModuleDependencies
+
 ```go
 func (graph *RepoGraph) GetModuleDependencies(moduleName string) []string
 ```
+
 Returns the dependencies of a specific module.
 
 Parameters:
+
 - `moduleName`: Name of the module
 
 Returns:
+
 - `[]string`: List of dependencies
 
 #### GetDependentModules
+
 ```go
 func (graph *RepoGraph) GetDependentModules(moduleName string) []string
 ```
+
 Returns modules that depend on a specific module.
 
 Parameters:
+
 - `moduleName`: Name of the module
 
 Returns:
+
 - `[]string`: List of dependent modules
 
 ## Build API
@@ -101,6 +118,7 @@ Returns:
 ### Types
 
 #### BuildConfig
+
 ```go
 type BuildConfig struct {
     Parallel      bool `json:"parallel"`
@@ -110,6 +128,7 @@ type BuildConfig struct {
 ```
 
 #### BuildResult
+
 ```go
 type BuildResult struct {
     ModulesBuilt   []string `json:"modules_built"`
@@ -122,16 +141,20 @@ type BuildResult struct {
 ### Functions
 
 #### IncrementalBuild
+
 ```go
 func IncrementalBuild(graph *analyzer.RepoGraph, config BuildConfig) *BuildResult
 ```
+
 Performs an incremental build of affected modules.
 
 Parameters:
+
 - `graph`: Dependency graph from analyzer
 - `config`: Build configuration
 
 Returns:
+
 - `*BuildResult`: Result of the build operation
 
 ## Impact API
@@ -139,6 +162,7 @@ Returns:
 ### Types
 
 #### ImpactResult
+
 ```go
 type ImpactResult struct {
     ChangedFile      string   `json:"changed_file"`
@@ -151,16 +175,20 @@ type ImpactResult struct {
 ### Functions
 
 #### AnalyzeImpact
+
 ```go
 func AnalyzeImpact(graph *analyzer.RepoGraph, changedFile string) *ImpactResult
 ```
+
 Analyzes the impact of a file change on the repository.
 
 Parameters:
+
 - `graph`: Dependency graph from analyzer
 - `changedFile`: Path to the changed file
 
 Returns:
+
 - `*ImpactResult`: Result of the impact analysis
 
 ## Refactor API

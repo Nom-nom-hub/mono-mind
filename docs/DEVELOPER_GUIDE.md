@@ -1,6 +1,7 @@
 # MonoMind Developer Guide
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Project Structure](#project-structure)
 3. [Architecture](#architecture)
@@ -15,11 +16,13 @@
 
 ## Introduction
 
-This guide is for developers who want to contribute to MonoMind or extend its functionality. It covers the project structure, architecture, and development practices.
+This guide is for developers who want to contribute to MonoMind or extend its
+functionality. It covers the project structure, architecture, and development
+practices.
 
 ## Project Structure
 
-```
+```bash
 mono-mind/
 ├── cmd/
 │   └── mono/              # CLI entry point
@@ -48,6 +51,7 @@ mono-mind/
 ## Architecture
 
 ### Core Principles
+
 1. **Modularity**: Each feature is implemented as a separate module
 2. **CLI-First**: All functionality is accessible through the command line
 3. **Extensibility**: Plugins can extend functionality without core changes
@@ -55,6 +59,7 @@ mono-mind/
 5. **Performance**: Optimized for large repositories
 
 ### Data Flow
+
 1. **Analyzer** scans the repository and builds a dependency graph
 2. **Impact Engine** uses the graph to predict change effects
 3. **Build/Test Orchestrator** executes targeted operations
@@ -64,6 +69,7 @@ mono-mind/
 7. **Plugin System** extends functionality through hooks
 
 ### Key Components
+
 - **CLI Layer**: Cobra-based command interface
 - **Core Modules**: Independent packages for each feature
 - **Configuration**: YAML-based configuration system
@@ -73,12 +79,14 @@ mono-mind/
 ## Development Setup
 
 ### Prerequisites
+
 - Go 1.19 or higher
 - Git
 - Node.js (for JavaScript examples)
 - Python (for Python examples)
 
 ### Getting Started
+
 ```bash
 # Fork and clone the repository
 git clone https://github.com/nom-nom-hub/mono-mind.git
@@ -98,6 +106,7 @@ go build -o mono.exe ./cmd/mono
 ```
 
 ### Development Workflow
+
 1. Create a feature branch
 2. Make changes
 3. Add tests
@@ -136,8 +145,10 @@ Follow the official Go coding standards:
 ## Testing
 
 ### Test Structure
+
 Tests are organized by module:
-```
+
+```bash
 internal/
 ├── analyzer/
 │   ├── analyzer.go
@@ -148,16 +159,17 @@ internal/
 ```
 
 ### Writing Tests
+
 ```go
 // Example test
 func TestAnalyzeRepo(t *testing.T) {
     // Setup
     tempDir := createTempRepo()
     defer os.RemoveAll(tempDir)
-    
+
     // Execute
     graph, err := analyzer.AnalyzeRepo(tempDir)
-    
+
     // Assert
     assert.NoError(t, err)
     assert.NotNil(t, graph)
@@ -166,6 +178,7 @@ func TestAnalyzeRepo(t *testing.T) {
 ```
 
 ### Running Tests
+
 ```bash
 # Run all tests
 go test ./...
@@ -181,6 +194,7 @@ go test ./internal/analyzer
 ```
 
 ### Test Best Practices
+
 - Write tests for new functionality
 - Use table-driven tests for multiple cases
 - Mock external dependencies

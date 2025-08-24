@@ -1,6 +1,7 @@
 # MonoMind Changelog
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Changelog Format](#changelog-format)
 3. [Versioning](#versioning)
@@ -38,6 +39,7 @@ MonoMind generates changelogs in Markdown format following the Keep a Changelog 
 ```
 
 ### Sections
+
 - **Added**: New features
 - **Changed**: Changes in existing functionality
 - **Deprecated**: Soon-to-be removed features
@@ -50,14 +52,17 @@ MonoMind generates changelogs in Markdown format following the Keep a Changelog 
 MonoMind follows Semantic Versioning (SemVer):
 
 ### Version Format
+
 `MAJOR.MINOR.PATCH`
 
 ### Version Bumps
+
 - **MAJOR**: Breaking changes
 - **MINOR**: Backward compatible new features
 - **PATCH**: Backward compatible bug fixes
 
 ### Examples
+
 - `1.0.0` → `1.0.1` (patch)
 - `1.0.1` → `1.1.0` (minor)
 - `1.1.0` → `2.0.0` (major)
@@ -76,9 +81,10 @@ mono.exe release --changelog --version 1.2.0
 ```
 
 ### Commit Message Guidelines
+
 For best changelog generation, follow these commit message conventions:
 
-```
+```bash
 feat: Add new authentication module
 fix: Resolve issue with database connections
 chore: Update dependencies
@@ -86,6 +92,7 @@ docs: Improve API documentation
 ```
 
 ### Supported Commit Types
+
 - `feat`: New features
 - `fix`: Bug fixes
 - `chore`: Maintenance tasks
@@ -120,6 +127,7 @@ You can manually edit the `CHANGELOG.md` file to:
 ## Best Practices
 
 ### Writing Good Changelog Entries
+
 - Use clear, concise language
 - Focus on what changed for users
 - Include issue numbers when relevant
@@ -127,12 +135,14 @@ You can manually edit the `CHANGELOG.md` file to:
 - Use consistent formatting
 
 ### Commit Message Best Practices
+
 - Use present tense ("Add feature" not "Added feature")
 - Use imperative mood ("Move cursor to..." not "Moves cursor to...")
 - Limit first line to 72 characters
 - Reference issues and pull requests
 
 ### Version Release Best Practices
+
 - Update changelog before tagging releases
 - Keep a "Unreleased" section for upcoming changes
 - Link to commits or issues when possible
@@ -140,6 +150,7 @@ You can manually edit the `CHANGELOG.md` file to:
 - Follow consistent formatting
 
 ### Example Good Changelog Entry
+
 ```markdown
 ## [1.2.0] - 2023-01-15
 ### Added
@@ -156,6 +167,7 @@ You can manually edit the `CHANGELOG.md` file to:
 ```
 
 ### Example Poor Changelog Entry
+
 ```markdown
 ## [1.2.0] - 2023-01-15
 ### Added
