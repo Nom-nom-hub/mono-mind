@@ -1,5 +1,9 @@
 # MonoMind
 
+[![Build Status](https://github.com/your-username/mono-mind/workflows/CI/badge.svg)](https://github.com/your-username/mono-mind/actions)
+[![Release](https://github.com/your-username/mono-mind/workflows/Release/badge.svg)](https://github.com/your-username/mono-mind/actions)
+[![License](https://img.shields.io/github/license/your-username/mono-mind)](LICENSE)
+
 An AI-powered development assistant designed to autonomously manage monorepos and complex codebases.
 
 ## Features
@@ -15,6 +19,10 @@ An AI-powered development assistant designed to autonomously manage monorepos an
 
 ## Installation
 
+### Download Pre-built Binaries
+Visit the [Releases](https://github.com/your-username/mono-mind/releases) page to download pre-built binaries for your platform.
+
+### Build from Source
 ```bash
 # Clone the repository
 git clone https://github.com/your-username/mono-mind.git
@@ -57,6 +65,12 @@ Comprehensive documentation is available in the [docs](docs/) directory:
 ## Configuration
 
 MonoMind can be configured using the `configs/config.yaml` file.
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment:
+- **CI**: Automatically builds, tests, and lints code on every push
+- **Release**: Automatically creates cross-platform binaries when tags are pushed
 
 ## License
 

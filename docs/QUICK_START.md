@@ -13,7 +13,7 @@ MonoMind is an AI-powered development assistant that helps you manage complex co
 ### Install MonoMind
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/mono-mind.git
+git clone https://github.com/nom-nom-hub/mono-mind.git
 cd mono-mind
 
 # Build the binary

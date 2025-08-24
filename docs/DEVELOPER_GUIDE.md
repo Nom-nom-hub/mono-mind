@@ -81,7 +81,7 @@ mono-mind/
 ### Getting Started
 ```bash
 # Fork and clone the repository
-git clone https://github.com/your-username/mono-mind.git
+git clone https://github.com/nom-nom-hub/mono-mind.git
 cd mono-mind
 
 # Install dependencies

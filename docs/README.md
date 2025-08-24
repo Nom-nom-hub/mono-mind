@@ -56,7 +56,7 @@ If you're contributing to MonoMind or extending its functionality:
 Need help? Here are your options:
 
 ### Community
-- Check existing [GitHub Issues](https://github.com/your-username/mono-mind/issues)
+- Check existing [GitHub Issues](https://github.com/nom-nom-hub/mono-mind/issues)
 - Join our community discussions
 - Contribute to the project
 

@@ -42,7 +42,7 @@ Download the latest release from GitHub and place it in your PATH.
 #### Option 2: Build from Source
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/mono-mind.git
+git clone https://github.com/nom-nom-hub/mono-mind.git
 cd mono-mind
 
 # Build the binary

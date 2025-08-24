@@ -19,7 +19,7 @@ MonoMind generates changelogs in Markdown format following the Keep a Changelog 
 ```markdown
 # Changelog
 
-## [1.2.0] - 2023-01-15
+## [1.2.0] - 2025-01-15
 ### Added
 - New feature X
 - New feature Y
@@ -32,7 +32,7 @@ MonoMind generates changelogs in Markdown format following the Keep a Changelog 
 - Bug in module A
 - Issue with configuration loading
 
-## [1.1.0] - 2022-12-01
+## [1.1.0] - 2025-12-01
 ### Added
 - Initial release
 ```
