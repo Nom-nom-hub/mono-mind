@@ -43,6 +43,17 @@ mono refactor --rename oldFunc newFunc --dry-run
 mono release --bump minor --changelog
 ```
 
+## Documentation
+
+Comprehensive documentation is available in the [docs](docs/) directory:
+
+- [Quick Start Guide](docs/QUICK_START.md) - Get up and running quickly
+- [User Guide](docs/USER_GUIDE.md) - Complete guide for using MonoMind
+- [API Documentation](docs/API.md) - Technical reference for developers
+- [Developer Guide](docs/DEVELOPER_GUIDE.md) - Contributing to MonoMind
+- [Visualization Guide](docs/VISUALIZATION_GUIDE.md) - Understanding dependency graphs
+- [Plugin Development](docs/PLUGIN_GUIDE.md) - Creating and using plugins
+
 ## Configuration
 
 MonoMind can be configured using the `configs/config.yaml` file.
