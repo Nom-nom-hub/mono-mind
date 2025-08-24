@@ -50,4 +50,4 @@ jobs:
           ### Changelog
           See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for detailed changes.
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
