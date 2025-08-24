@@ -4,7 +4,7 @@
 
 ### Added
 
-- Initial release of **MonoMind** MVP with:
+- Initial release of --MonoMind-- MVP with:
   - CLI
   - Analyzer
   - Build
@@ -14,7 +14,7 @@
 
 ### Improved
 
-- Enhanced **MonoMind** with:
+- Enhanced --MonoMind-- with:
   - Configuration system
   - Visualization support
   - Plugin architecture

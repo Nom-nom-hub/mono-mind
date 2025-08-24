@@ -6,10 +6,10 @@ This document describes the GitHub Actions workflows configured for the MonoMind
 ## Workflows
 
 ### 1. CI (Continuous Integration)
-**File**: `.github/workflows/ci.yml`
-**Trigger**: Push or pull request to main/master branches
+--File--: `.github/workflows/ci.yml`
+--Trigger--: Push or pull request to main/master branches
 
-**Jobs**:
+--Jobs--:
 - Build the project
 - Run tests with coverage
 - Lint code with golangci-lint
@@ -17,35 +17,35 @@ This document describes the GitHub Actions workflows configured for the MonoMind
 - Validate documentation files
 
 ### 2. Build and Test
-**File**: `.github/workflows/build-test.yml`
-**Trigger**: Push or pull request to main/master branches
+--File--: `.github/workflows/build-test.yml`
+--Trigger--: Push or pull request to main/master branches
 
-**Jobs**:
+--Jobs--:
 - Set up Go environment
 - Build the MonoMind binary
 - Run all tests
 
 ### 3. Code Quality
-**File**: `.github/workflows/code-quality.yml`
-**Trigger**: Push or pull request to main/master branches
+--File--: `.github/workflows/code-quality.yml`
+--Trigger--: Push or pull request to main/master branches
 
-**Jobs**:
+--Jobs--:
 - Lint Go code with golangci-lint
 - Security scanning with Gosec
 
 ### 4. Documentation
-**File**: `.github/workflows/documentation.yml`
-**Trigger**: Push or pull request to main/master branches
+--File--: `.github/workflows/documentation.yml`
+--Trigger--: Push or pull request to main/master branches
 
-**Jobs**:
+--Jobs--:
 - Verify all documentation files exist
 - Validate Markdown formatting
 
 ### 5. Release
-**File**: `.github/workflows/release.yml`
-**Trigger**: Push of tags matching pattern `v*`
+--File--: `.github/workflows/release.yml`
+--Trigger--: Push of tags matching pattern `v-`
 
-**Jobs**:
+--Jobs--:
 - Set up Go environment
 - Extract version from tag
 - Build binaries for multiple platforms:
@@ -61,7 +61,7 @@ This document describes the GitHub Actions workflows configured for the MonoMind
 ## Configuration Files
 
 ### Markdown Lint Configuration
-**File**: `.markdownlint.json`
+--File--: `.markdownlint.json`
 Configures rules for Markdown file validation:
 - Line length limits
 - Heading styles

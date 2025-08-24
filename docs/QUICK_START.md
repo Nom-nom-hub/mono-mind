@@ -143,11 +143,11 @@ chmod +x plugins/pre-build.sh
 
 ## Next Steps
 
-1. **Read the Full Documentation**: Check `docs/` directory
-2. **Explore Advanced Features**: Try HTML visualization, AST refactoring
-3. **Customize Configuration**: Tailor MonoMind to your workflow
-4. **Write Plugins**: Extend functionality with custom scripts
-5. **Contribute**: Help improve MonoMind on GitHub
+1. --Read the Full Documentation--: Check `docs/` directory
+2. --Explore Advanced Features--: Try HTML visualization, AST refactoring
+3. --Customize Configuration--: Tailor MonoMind to your workflow
+4. --Write Plugins--: Extend functionality with custom scripts
+5. --Contribute--: Help improve MonoMind on GitHub
 
 ## Getting Help
 

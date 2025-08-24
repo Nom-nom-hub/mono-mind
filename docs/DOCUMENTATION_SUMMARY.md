@@ -8,47 +8,47 @@ This document summarizes all the documentation created for MonoMind, organized b
 
 ### Main Project Files
 
-1. **README.md** - Project overview and quick start instructions  
-2. **BLUEPRINT.md** - Technical blueprint for the AI agent  
-3. **DEV-NOTES.md** - Master AI instructions for building MonoMind  
-4. **PRD.md** - Product Requirements Document  
-5. **CHANGELOG.md** - Auto-generated changelog  
-6. **FINAL_FEATURE_SUMMARY.md** - Complete feature implementation summary  
+1. --README.md-- - Project overview and quick start instructions  
+2. --BLUEPRINT.md-- - Technical blueprint for the AI agent  
+3. --DEV-NOTES.md-- - Master AI instructions for building MonoMind  
+4. --PRD.md-- - Product Requirements Document  
+5. --CHANGELOG.md-- - Auto-generated changelog  
+6. --FINAL_FEATURE_SUMMARY.md-- - Complete feature implementation summary  
 
 ### Documentation Directory
 
 The `docs/` directory contains comprehensive guides for users and developers:
 
-1. **docs/README.md** - Documentation index and navigation guide  
-2. **docs/QUICK_START.md** - Getting started quickly with MonoMind  
-3. **docs/USER_GUIDE.md** - Complete user guide for all features  
-4. **docs/API.md** - Technical API reference for developers  
-5. **docs/DEVELOPER_GUIDE.md** - Guide for contributing to MonoMind  
-6. **docs/VISUALIZATION_GUIDE.md** - Working with dependency visualizations  
-7. **docs/PLUGIN_GUIDE.md** - Creating and using plugins  
-8. **docs/CHANGELOG_GUIDE.md** - Working with releases and versioning  
-9. **docs/TROUBLESHOOTING.md** - Solutions to common problems  
+1. --docs/README.md-- - Documentation index and navigation guide  
+2. --docs/QUICK_START.md-- - Getting started quickly with MonoMind  
+3. --docs/USER_GUIDE.md-- - Complete user guide for all features  
+4. --docs/API.md-- - Technical API reference for developers  
+5. --docs/DEVELOPER_GUIDE.md-- - Guide for contributing to MonoMind  
+6. --docs/VISUALIZATION_GUIDE.md-- - Working with dependency visualizations  
+7. --docs/PLUGIN_GUIDE.md-- - Creating and using plugins  
+8. --docs/CHANGELOG_GUIDE.md-- - Working with releases and versioning  
+9. --docs/TROUBLESHOOTING.md-- - Solutions to common problems  
 
 ## Documentation by Audience
 
 ### For Users
 
-- **Quick Start Guide** (docs/QUICK_START.md) - Fast path to productivity  
-- **User Guide** (docs/USER_GUIDE.md) - Complete reference for using MonoMind  
-- **Visualization Guide** (docs/VISUALIZATION_GUIDE.md) - Understanding dependency graphs  
-- **Changelog Guide** (docs/CHANGELOG_GUIDE.md) - Working with releases  
-- **Troubleshooting** (docs/TROUBLESHOOTING.md) - Solving common issues  
+- --Quick Start Guide-- (docs/QUICK_START.md) - Fast path to productivity  
+- --User Guide-- (docs/USER_GUIDE.md) - Complete reference for using MonoMind  
+- --Visualization Guide-- (docs/VISUALIZATION_GUIDE.md) - Understanding dependency graphs  
+- --Changelog Guide-- (docs/CHANGELOG_GUIDE.md) - Working with releases  
+- --Troubleshooting-- (docs/TROUBLESHOOTING.md) - Solving common issues  
 
 ### For Developers
 
-- **Developer Guide** (docs/DEVELOPER_GUIDE.md) - Contributing to MonoMind  
-- **API Documentation** (docs/API.md) - Technical reference  
-- **Plugin Guide** (docs/PLUGIN_GUIDE.md) - Extending functionality  
+- --Developer Guide-- (docs/DEVELOPER_GUIDE.md) - Contributing to MonoMind  
+- --API Documentation-- (docs/API.md) - Technical reference  
+- --Plugin Guide-- (docs/PLUGIN_GUIDE.md) - Extending functionality  
 
 ### For Everyone
 
-- **Main README** (README.md) - Project overview and quick reference  
-- **Documentation Index** (docs/README.md) - Navigation and support information  
+- --Main README-- (README.md) - Project overview and quick reference  
+- --Documentation Index-- (docs/README.md) - Navigation and support information  
 
 ## Key Documentation Features
 

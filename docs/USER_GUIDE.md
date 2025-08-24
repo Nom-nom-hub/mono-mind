@@ -91,10 +91,10 @@ mono.exe analyze --path /path/to/project
 
 ### Output Formats
 
-* **Tree**: Hierarchical view
-* **ASCII**: Box-style diagram
-* **Horizontal**: Linear view
-* **HTML**: Interactive web page
+- --Tree--: Hierarchical view
+- --ASCII--: Box-style diagram
+- --Horizontal--: Linear view
+- --HTML--: Interactive web page
 
 ```bash
 mono.exe analyze          # Tree format (default)
@@ -109,9 +109,9 @@ mono.exe visualize html --output graph.html
 
 Predicts which modules and tests will be affected by changes to a file. Helps you:
 
-* Focus testing efforts
-* Understand scope of changes
-* Plan refactorings
+- Focus testing efforts
+- Understand scope of changes
+- Plan refactorings
 
 ### Running Impact Analysis
 
@@ -122,9 +122,9 @@ mono.exe impact src/components/Button.js --verbose
 
 ### Interpreting Results
 
-* Directly affected modules
-* Indirectly affected modules (via dependencies)
-* Tests that should be run
+- Directly affected modules
+- Indirectly affected modules (via dependencies)
+- Tests that should be run
 
 ## Building Projects
 
@@ -201,10 +201,10 @@ mono.exe refactor --move "src/old/path:src/new/path" --dry-run
 
 ### Supported Languages
 
-* Go (full AST)
-* JavaScript/TypeScript (regex-based)
-* Python (regex-based)
-* More coming soon
+- Go (full AST)
+- JavaScript/TypeScript (regex-based)
+- Python (regex-based)
+- More coming soon
 
 ## Release Management
 
@@ -222,9 +222,9 @@ mono.exe release --bump major --changelog --publish
 
 ### Version Bumping
 
-* **Patch**: Bug fixes
-* **Minor**: Backward-compatible new features
-* **Major**: Breaking changes
+- --Patch--: Bug fixes
+- --Minor--: Backward-compatible new features
+- --Major--: Breaking changes
 
 ### Changelog Generation
 
@@ -310,9 +310,9 @@ Plugins add features without modifying core code.
 
 ### Plugin Hooks
 
-* `pre-build`, `post-build`
-* `pre-test`, `post-test`
-* `pre-release`, `post-release`
+- `pre-build`, `post-build`
+- `pre-test`, `post-test`
+- `pre-release`, `post-release`
 
 ### Example Plugin
 
@@ -346,21 +346,21 @@ project/
 
 ### Dependency Management
 
-* Minimize circular dependencies
-* Use explicit imports
-* Keep modules focused
+- Minimize circular dependencies
+- Use explicit imports
+- Keep modules focused
 
 ### Version Control
 
-* Commit frequently
-* Use feature branches
-* Tag releases consistently
+- Commit frequently
+- Use feature branches
+- Tag releases consistently
 
 ### Testing
 
-* Write tests for new features
-* Run tests regularly
-* Use impact analysis
+- Write tests for new features
+- Run tests regularly
+- Use impact analysis
 
 ## Troubleshooting
 
@@ -368,21 +368,21 @@ project/
 
 #### Analyzer Not Finding Modules
 
-* Check file extensions
-* Verify ignored directories
-* Use `--debug`
+- Check file extensions
+- Verify ignored directories
+- Use `--debug`
 
 #### Builds Failing
 
-* Check build commands
-* Verify dependencies
-* Use `--dry-run`
+- Check build commands
+- Verify dependencies
+- Use `--dry-run`
 
 #### Tests Not Running
 
-* Ensure test commands are correct
-* Verify affected modules
-* Use `--verbose`
+- Ensure test commands are correct
+- Verify affected modules
+- Use `--verbose`
 
 ### Getting Help
 

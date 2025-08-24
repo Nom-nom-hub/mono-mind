@@ -66,48 +66,48 @@ type RepoGraph struct {
 #### AnalyzeRepo
 
 ```go
-func AnalyzeRepo(rootPath string) (*RepoGraph, error)
+func AnalyzeRepo(rootPath string) (-RepoGraph, error)
 ```
 
 Scans the repository and builds a dependency graph.
 
 Parameters:
 
-* `rootPath`: Path to the repository root
+- `rootPath`: Path to the repository root
 
 Returns:
 
-* `*RepoGraph`: The dependency graph
-* `error`: Any error that occurred
+- `-RepoGraph`: The dependency graph
+- `error`: Any error that occurred
 
 #### GetModuleDependencies
 
 ```go
-func (graph *RepoGraph) GetModuleDependencies(moduleName string) []string
+func (graph -RepoGraph) GetModuleDependencies(moduleName string) []string
 ```
 
 Returns the dependencies of a specific module.
 
 Parameters:
 
-* `moduleName`: Name of the module
+- `moduleName`: Name of the module
 
 Returns:
 
-* `[]string`: List of dependencies
+- `[]string`: List of dependencies
 
 #### GetDependentModules
 
 ```go
-func (graph *RepoGraph) GetDependentModules(moduleName string) []string
+func (graph -RepoGraph) GetDependentModules(moduleName string) []string
 ```
 
 Returns modules that depend on a specific module.
 
 Parameters:
 
-* `moduleName`: Name of the module
+- `moduleName`: Name of the module
 
 Returns:
 
-* `[]string`: List of dependent modules
+- `[]string`: List of dependent modules

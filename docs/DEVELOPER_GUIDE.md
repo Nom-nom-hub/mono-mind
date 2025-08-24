@@ -50,38 +50,38 @@ mono-mind/
 
 ### Core Principles
 
-1. **Modularity**: Each feature is implemented as a separate module
-2. **CLI-First**: All functionality is accessible through the command line
-3. **Extensibility**: Plugins can extend functionality without core changes
-4. **Language Agnostic**: Supports multiple programming languages
-5. **Performance**: Optimized for large repositories
+1. --Modularity--: Each feature is implemented as a separate module
+2. --CLI-First--: All functionality is accessible through the command line
+3. --Extensibility--: Plugins can extend functionality without core changes
+4. --Language Agnostic--: Supports multiple programming languages
+5. --Performance--: Optimized for large repositories
 
 ### Data Flow
 
-1. **Analyzer** scans the repository and builds a dependency graph
-2. **Impact Engine** uses the graph to predict change effects
-3. **Build/Test Orchestrator** executes targeted operations
-4. **Refactor Engine** safely modifies code
-5. **Release Manager** handles versioning and publishing
-6. **Visualization** presents data in multiple formats
-7. **Plugin System** extends functionality through hooks
+1. --Analyzer-- scans the repository and builds a dependency graph
+2. --Impact Engine-- uses the graph to predict change effects
+3. --Build/Test Orchestrator-- executes targeted operations
+4. --Refactor Engine-- safely modifies code
+5. --Release Manager-- handles versioning and publishing
+6. --Visualization-- presents data in multiple formats
+7. --Plugin System-- extends functionality through hooks
 
 ### Key Components
 
-* **CLI Layer**: Cobra-based command interface
-* **Core Modules**: Independent packages for each feature
-* **Configuration**: YAML-based configuration system
-* **Logging**: Structured logging with Logrus
-* **Plugin System**: Hook-based extensibility
+- --CLI Layer--: Cobra-based command interface
+- --Core Modules--: Independent packages for each feature
+- --Configuration--: YAML-based configuration system
+- --Logging--: Structured logging with Logrus
+- --Plugin System--: Hook-based extensibility
 
 ## Development Setup
 
 ### Prerequisites
 
-* Go 1.19 or higher
-* Git
-* Node.js (for JavaScript examples)
-* Python (for Python examples)
+- Go 1.19 or higher
+- Git
+- Node.js (for JavaScript examples)
+- Python (for Python examples)
 
 ### Getting Started
 
@@ -119,31 +119,31 @@ go build -o mono.exe ./cmd/mono
 
 Follow the official Go coding standards:
 
-* Use `gofmt` for formatting
-* Write clear, concise comments
-* Use meaningful variable names
-* Keep functions focused and small
+- Use `gofmt` for formatting
+- Write clear, concise comments
+- Use meaningful variable names
+- Keep functions focused and small
 
 ### Naming Conventions
 
-* **Packages**: lowercase, single word (e.g., `analyzer`)
-* **Functions**: CamelCase (e.g., `AnalyzeRepo`)
-* **Variables**: camelCase (e.g., `repoGraph`)
-* **Constants**: UPPER\_SNAKE\_CASE (e.g., `MAX_CONCURRENT`)
+- --Packages--: lowercase, single word (e.g., `analyzer`)
+- --Functions--: CamelCase (e.g., `AnalyzeRepo`)
+- --Variables--: camelCase (e.g., `repoGraph`)
+- --Constants--: UPPER\_SNAKE\_CASE (e.g., `MAX_CONCURRENT`)
 
 ### Error Handling
 
-* Always handle errors explicitly
-* Use descriptive error messages
-* Wrap errors with context when appropriate
-* Return errors early when possible
+- Always handle errors explicitly
+- Use descriptive error messages
+- Wrap errors with context when appropriate
+- Return errors early when possible
 
 ### Logging
 
-* Use the internal logger package
-* Include relevant context in log messages
-* Use appropriate log levels (debug, info, warn, error)
-* Avoid logging sensitive information
+- Use the internal logger package
+- Include relevant context in log messages
+- Use appropriate log levels (debug, info, warn, error)
+- Avoid logging sensitive information
 
 ## Testing
 
@@ -165,7 +165,7 @@ internal/
 
 ```go
 // Example test
-func TestAnalyzeRepo(t *testing.T) {
+func TestAnalyzeRepo(t -testing.T) {
     // Setup
     tempDir := createTempRepo()
     defer os.RemoveAll(tempDir)
@@ -198,21 +198,21 @@ go test ./internal/analyzer
 
 ### Test Best Practices
 
-* Write tests for new functionality
-* Use table-driven tests for multiple cases
-* Mock external dependencies
-* Test edge cases and error conditions
-* Keep tests fast and focused
+- Write tests for new functionality
+- Use table-driven tests for multiple cases
+- Mock external dependencies
+- Test edge cases and error conditions
+- Keep tests fast and focused
 
 ## Adding New Features
 
 ### Feature Development Process
 
-1. **Design**: Plan the feature and API
-2. **Implement**: Write the code
-3. **Test**: Add comprehensive tests
-4. **Document**: Update documentation
-5. **Review**: Get code review
+1. --Design--: Plan the feature and API
+2. --Implement--: Write the code
+3. --Test--: Add comprehensive tests
+4. --Document--: Update documentation
+5. --Review--: Get code review
 
 ### Creating a New Module
 
@@ -244,7 +244,7 @@ type Result struct {
 }
 
 // Process performs the example operation
-func Process(config Config) *Result {
+func Process(config Config) -Result {
     logger.Info("Processing example", "enabled", config.Enabled)
     
     result := &Result{
@@ -262,28 +262,28 @@ func Process(config Config) *Result {
 
 Each module should follow a consistent pattern:
 
-* Configuration struct
-* Result struct
-* Main processing function
-* Helper functions as needed
+- Configuration struct
+- Result struct
+- Main processing function
+- Helper functions as needed
 
 ### Dependency Management
 
 Modules should:
 
-* Have minimal dependencies
-* Use interfaces for external dependencies
-* Avoid circular dependencies
-* Handle errors gracefully
+- Have minimal dependencies
+- Use interfaces for external dependencies
+- Avoid circular dependencies
+- Handle errors gracefully
 
 ### Concurrency
 
 For performance-critical modules:
 
-* Use goroutines for parallel processing
-* Limit concurrent operations
-* Handle context cancellation
-* Use sync primitives when needed
+- Use goroutines for parallel processing
+- Limit concurrent operations
+- Handle context cancellation
+- Use sync primitives when needed
 
 ## Plugin Development
 
@@ -291,9 +291,9 @@ For performance-critical modules:
 
 Plugins are external programs executed at specific hooks:
 
-* Pre/Post build
-* Pre/Post test
-* Pre/Post release
+- Pre/Post build
+- Pre/Post test
+- Pre/Post release
 
 ### Creating Plugins
 
@@ -315,36 +315,36 @@ print("Post-test plugin")
 
 ### Plugin Best Practices
 
-* Handle errors gracefully
-* Use exit codes appropriately
-* Log important information
-* Be fast and efficient
-* Document plugin behavior
+- Handle errors gracefully
+- Use exit codes appropriately
+- Log important information
+- Be fast and efficient
+- Document plugin behavior
 
 ## Documentation
 
 ### Documentation Structure
 
-* **README.md**: Project overview
-* **docs/README.md**: User documentation
-* **docs/API.md**: API reference
-* **docs/USER\_GUIDE.md**: User guide
-* **docs/DEVELOPER\_GUIDE.md**: Developer guide (this document)
+- --README.md--: Project overview
+- --docs/README.md--: User documentation
+- --docs/API.md--: API reference
+- --docs/USER\_GUIDE.md--: User guide
+- --docs/DEVELOPER\_GUIDE.md--: Developer guide (this document)
 
 ### Writing Documentation
 
-* Use clear, simple language
-* Include examples
-* Keep it up to date
-* Organize logically
-* Use consistent formatting
+- Use clear, simple language
+- Include examples
+- Keep it up to date
+- Organize logically
+- Use consistent formatting
 
 ### Code Comments
 
-* Comment exported functions and types
-* Explain complex logic
-* Document assumptions
-* Keep comments accurate
+- Comment exported functions and types
+- Explain complex logic
+- Document assumptions
+- Keep comments accurate
 
 ## Release Process
 
@@ -352,9 +352,9 @@ print("Post-test plugin")
 
 MonoMind follows semantic versioning:
 
-* **Major**: Breaking changes
-* **Minor**: New features
-* **Patch**: Bug fixes
+- --Major--: Breaking changes
+- --Minor--: New features
+- --Patch--: Bug fixes
 
 ### Release Steps
 
@@ -367,16 +367,16 @@ MonoMind follows semantic versioning:
 
 ### Pre-release Checklist
 
-* [ ] All tests pass
-* [ ] Documentation is up to date
-* [ ] Code is reviewed
-* [ ] Version is updated
-* [ ] Changelog is generated
-* [ ] Binaries build successfully
+- [ ] All tests pass
+- [ ] Documentation is up to date
+- [ ] Code is reviewed
+- [ ] Version is updated
+- [ ] Changelog is generated
+- [ ] Binaries build successfully
 
 ### Post-release
 
-* [ ] Verify release on GitHub
-* [ ] Update version in development
-* [ ] Announce release
-* [ ] Monitor for issues
+- [ ] Verify release on GitHub
+- [ ] Update version in development
+- [ ] Announce release
+- [ ] Monitor for issues

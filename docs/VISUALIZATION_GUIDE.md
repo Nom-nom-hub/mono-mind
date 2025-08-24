@@ -70,10 +70,10 @@ Dependency Graph:
 
 ### Features
 
-* Module names with language indicators
-* Clear dependency relationships
-* Reverse dependency tracking (`used by`)
-* File type icons
+- Module names with language indicators
+- Clear dependency relationships
+- Reverse dependency tracking (`used by`)
+- File type icons
 
 ## ASCII Visualization
 
@@ -113,10 +113,10 @@ Dependency Graph (ASCII):
 
 ### Features
 
-* Box-style module representation
-* Clear directional arrows
-* Language indicators
-* Visual separation of components
+- Box-style module representation
+- Clear directional arrows
+- Language indicators
+- Visual separation of components
 
 ## Horizontal Visualization
 
@@ -146,10 +146,10 @@ Dependencies:
 
 ### Features
 
-* Linear module flow
-* Compact representation
-* Clear dependency listing
-* Good for sequential relationships
+- Linear module flow
+- Compact representation
+- Clear dependency listing
+- Good for sequential relationships
 
 ## HTML Visualization
 
@@ -161,12 +161,12 @@ mono.exe visualize html --output dependencies.html
 
 ### Features
 
-* Interactive web page
-* Professional CSS styling
-* Hover effects and visual enhancements
-* Shareable and viewable in any browser
-* Printable and presentable
-* Embeddable in documentation
+- Interactive web page
+- Professional CSS styling
+- Hover effects and visual enhancements
+- Shareable and viewable in any browser
+- Printable and presentable
+- Embeddable in documentation
 
 ### HTML Output Structure
 
@@ -176,7 +176,7 @@ mono.exe visualize html --output dependencies.html
 <head>
     <title>MonoMind Dependency Graph</title>
     <style>
-        /* Professional CSS styling */
+        /- Professional CSS styling -/
     </style>
 </head>
 <body>
@@ -243,26 +243,26 @@ echo "Visualizations generated in docs/ directory"
 
 ### Understanding Dependencies
 
-* **Dependencies**: Modules this module depends on
-* **Dependents**: Modules that depend on this module
-* **Circular Dependencies**: Avoid when possible
-* **Orphan Modules**: Modules with no dependencies or dependents
+- --Dependencies--: Modules this module depends on
+- --Dependents--: Modules that depend on this module
+- --Circular Dependencies--: Avoid when possible
+- --Orphan Modules--: Modules with no dependencies or dependents
 
 ### Identifying Issues
 
-* Too many dependencies → Module may be overloaded
-* Too many dependents → Module may be a bottleneck
-* Circular dependencies → Can break build/test processes
-* Orphan modules → May be unused or poorly integrated
+- Too many dependencies → Module may be overloaded
+- Too many dependents → Module may be a bottleneck
+- Circular dependencies → Can break build/test processes
+- Orphan modules → May be unused or poorly integrated
 
 ### Making Decisions
 
 Use visualizations to:
 
-* Plan refactorings
-* Identify optimization opportunities
-* Understand change impact
-* Communicate architecture to the team
+- Plan refactorings
+- Identify optimization opportunities
+- Understand change impact
+- Communicate architecture to the team
 
 ## Best Practices
 
@@ -270,23 +270,23 @@ Use visualizations to:
 
 #### Tree View
 
-* Best for hierarchical relationships
-* Terminal-based workflows
+- Best for hierarchical relationships
+- Terminal-based workflows
 
 #### ASCII View
 
-* Best for simple boxes and arrows
-* Quick terminal viewing
+- Best for simple boxes and arrows
+- Quick terminal viewing
 
 #### Horizontal View
 
-* Best for linear data flow
-* Documentation and analysis
+- Best for linear data flow
+- Documentation and analysis
 
 #### HTML View
 
-* Best for professional presentations
-* Documentation, reports, and team sharing
+- Best for professional presentations
+- Documentation, reports, and team sharing
 
 ### Regular Visualization Updates
 
@@ -297,16 +297,16 @@ mono.exe visualize html --output docs/latest-dependencies.html
 
 ### Version Control
 
-* Commit visualizations for key releases
-* Compare outputs over time
-* Include in architectural docs
+- Commit visualizations for key releases
+- Compare outputs over time
+- Include in architectural docs
 
 ### Sharing Visualizations
 
-* Embed HTML visualizations in documentation
-* Present tree views in meetings
-* Use horizontal views for onboarding
-* Include visualizations in project wikis
+- Embed HTML visualizations in documentation
+- Present tree views in meetings
+- Use horizontal views for onboarding
+- Include visualizations in project wikis
 
 ### Automation Tips
 
@@ -323,7 +323,7 @@ analyze-and-visualize:
 
 ### Integration with Documentation
 
-* Include visualizations in README files
-* Add to project wikis
-* Use in architectural decision records
-* Include in onboarding documentation
+- Include visualizations in README files
+- Add to project wikis
+- Use in architectural decision records
+- Include in onboarding documentation
