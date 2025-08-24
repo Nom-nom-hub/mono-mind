@@ -1,0 +1,42 @@
+# GitHub Pages Configuration for MonoMind Documentation
+title: MonoMind Documentation
+description: Comprehensive documentation for the MonoMind monorepo management tool
+url: "https://nom-nom-hub.github.io/mono-mind"
+baseurl: "/mono-mind"
+repository: nom-nom-hub/mono-mind
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /docs/:path/
+
+# Defaults
+defaults:
+  - scope:
+      path: "docs"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"
+
+# Custom variables
+monomind:
+  version: "0.1.0"
+  repository: "https://github.com/nom-nom-hub/mono-mind"

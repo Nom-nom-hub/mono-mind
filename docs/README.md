@@ -1,83 +1,102 @@
 # MonoMind Documentation
 
-Welcome to the MonoMind documentation! This directory contains comprehensive guides and references for using and contributing to MonoMind.
+This directory contains the complete documentation suite for MonoMind, optimized for GitHub Pages with professional styling.
 
-## Documentation Index
+## 📚 Documentation Structure
 
-### 🚀 Getting Started
-- [Quick Start Guide](QUICK_START.md) - Get up and running quickly
-- [User Guide](USER_GUIDE.md) - Complete guide for using MonoMind
-- [Troubleshooting](TROUBLESHOOTING.md) - Solutions to common problems
+### User Documentation
+- **[QUICK_START.md](./QUICK_START.md)** - Fast path to productivity
+- **[USER_GUIDE.md](./USER_GUIDE.md)** - Complete reference for all features
+- **[VISUALIZATION_GUIDE.md](./VISUALIZATION_GUIDE.md)** - Understanding dependency graphs
+- **[PLUGIN_GUIDE.md](./PLUGIN_GUIDE.md)** - Creating and using plugins
+- **[CHANGELOG_GUIDE.md](./CHANGELOG_GUIDE.md)** - Working with releases
+- **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Solutions to common problems
 
-### 📚 References
-- [API Documentation](API.md) - Detailed API reference for developers
-- [Developer Guide](DEVELOPER_GUIDE.md) - Guide for contributing to MonoMind
-- [Configuration Guide](../configs/config.yaml) - Configuration options and examples
+### Developer Resources
+- **[API.md](./API.md)** - Technical API reference
+- **[DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md)** - Contributing to MonoMind
+- **[DOCUMENTATION_SUMMARY.md](./DOCUMENTATION_SUMMARY.md)** - Documentation overview
 
-### 🛠️ Features
-- [Visualization Guide](VISUALIZATION_GUIDE.md) - How to use and interpret visualizations
-- [Plugin Development](PLUGIN_GUIDE.md) - Creating and using plugins
-- [Changelog Guide](CHANGELOG_GUIDE.md) - Working with changelogs and versioning
+## 🎨 GitHub Pages Styling
 
-## Overview
+This documentation is styled for professional presentation on GitHub Pages:
 
-MonoMind is an AI-powered development assistant designed to autonomously manage monorepos and complex codebases. It combines code analysis, build orchestration, testing, refactoring, and release management into a single intelligent CLI-driven interface.
+### Files
+- **`style.css`** - Custom CSS with professional theming
+- **`index.html`** - Main documentation landing page
+- **`_layouts/default.html`** - Jekyll layout template
+- **`_config.yml`** - GitHub Pages configuration
 
-### Key Features
-- **Repository Analysis**: Scans repositories and builds dependency graphs
-- **Impact Analysis**: Predicts the effect of changes on modules and tests
-- **Build Orchestration**: Smart, incremental builds across monorepos
-- **Test Orchestration**: Determines which tests to run based on code changes
-- **Refactoring**: Safe rename, move, and restructure operations across languages
-- **Release Management**: Versioning, changelog generation, and publishing
-- **Plugin Architecture**: Extend functionality without modifying core code
-- **Visualization**: Multiple formats including ASCII and HTML exports
+### Features
+- **Responsive Design** - Works on desktop and mobile
+- **Syntax Highlighting** - Code blocks with proper highlighting
+- **Professional Typography** - Clean, readable fonts
+- **Navigation** - Easy navigation between documents
+- **Print Styles** - Optimized for printing
 
-## Quick Navigation
+## 🚀 Setting Up GitHub Pages
 
-### For Users
-If you're using MonoMind to manage your projects:
-1. Start with the [Quick Start Guide](QUICK_START.md)
-2. Refer to the [User Guide](USER_GUIDE.md) for detailed usage
-3. Check [Troubleshooting](TROUBLESHOOTING.md) for help with issues
+1. **Enable GitHub Pages** in repository settings
+2. **Choose source**: Deploy from a branch
+3. **Select branch**: `main` or your default branch
+4. **Set folder**: `/docs` (if using docs folder) or `/(root)`
 
-### For Developers
-If you're contributing to MonoMind or extending its functionality:
-1. Read the [Developer Guide](DEVELOPER_GUIDE.md)
-2. Check the [API Documentation](API.md) for technical details
-3. Learn about [Plugin Development](PLUGIN_GUIDE.md)
+### Alternative: Root-level deployment
+If you want to deploy from the repository root, move these files:
+```bash
+# Move to repository root
+mv docs/index.html ./
+mv docs/style.css ./
+mv docs/_layouts ./  # (if using Jekyll)
+```
 
-### For Everyone
-- [Visualization Guide](VISUALIZATION_GUIDE.md) - Understanding dependency graphs
-- [Changelog Guide](CHANGELOG_GUIDE.md) - Working with releases and versioning
+## 📝 Contributing to Documentation
 
-## Support
+### Writing Guidelines
+- Use clear, concise language
+- Include practical examples
+- Keep line length under 120 characters
+- Use proper heading hierarchy
+- Test all commands and examples
 
-Need help? Here are your options:
+### Formatting Standards
+- All markdown files pass markdownlint checks
+- Headings have proper spacing
+- Code blocks specify language
+- Tables are properly formatted
+- Links are functional
 
-### Community
-- Check existing [GitHub Issues](https://github.com/nom-nom-hub/mono-mind/issues)
-- Join our community discussions
-- Contribute to the project
+### Local Testing
+```bash
+# Install markdownlint-cli
+npm install -g markdownlint-cli
 
-### Documentation Issues
-If you find problems with the documentation:
-1. Open an issue describing the problem
-2. Or submit a pull request with fixes
-3. Be specific about what needs improvement
+# Check documentation
+markdownlint docs/
+```
 
-## Contributing
+## 🔧 Customization
 
-We welcome contributions! See the [Developer Guide](DEVELOPER_GUIDE.md) for:
-- How to set up your development environment
-- Coding standards and practices
-- Testing guidelines
-- Pull request process
+### Colors
+Edit `docs/style.css` to customize:
+```css
+:root {
+  --primary-color: #2c3e50;    /* Main headings */
+  --secondary-color: #3498db;  /* Links and accents */
+  --accent-color: #e74c3c;     /* Code keywords */
+}
+```
 
-## License
+### Layout
+Modify `docs/_layouts/default.html` for:
+- Navigation structure
+- Header/footer content
+- Additional CSS/JS includes
 
-MonoMind is released under the MIT License. See the [LICENSE](../LICENSE) file for details.
+## 📄 License
+
+This documentation is part of MonoMind and follows the same license terms.
 
 ---
 
-*Documentation last updated: August 23, 2025*
+**Need help?** Check the [troubleshooting guide](./TROUBLESHOOTING.md) or [open an issue](https://github.com/nom-nom-hub/mono-mind/issues).

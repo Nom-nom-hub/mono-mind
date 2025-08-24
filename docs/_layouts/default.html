@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: "MonoMind Documentation" }}</title>
+    <link rel="stylesheet" href="{{ '/docs/style.css' | relative_url }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .nav-links {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .nav-links a {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>MonoMind Documentation</h1>
+            <p>Comprehensive documentation for the MonoMind monorepo management tool</p>
+        </header>
+
+        <nav class="nav-links">
+            <a href="{{ '/README.md' | relative_url }}">Home</a>
+            <a href="{{ '/docs/QUICK_START.md' | relative_url }}">Quick Start</a>
+            <a href="{{ '/docs/USER_GUIDE.md' | relative_url }}">User Guide</a>
+            <a href="{{ '/docs/API.md' | relative_url }}">API Reference</a>
+            <a href="{{ '/docs/DEVELOPER_GUIDE.md' | relative_url }}">Developer Guide</a>
+        </nav>
+
+        <main>
+            {{ content }}
+        </main>
+
+        <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #e9ecef; text-align: center; color: #6c757d;">
+            <p>&copy; 2025 MonoMind. Documentation generated for GitHub Pages.</p>
+            <p>
+                <a href="https://github.com/nom-nom-hub/mono-mind" style="color: #3498db;">View on GitHub</a> |
+                <a href="https://github.com/nom-nom-hub/mono-mind/issues" style="color: #3498db;">Report Issues</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
