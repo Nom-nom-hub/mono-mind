@@ -1,8 +1,8 @@
 # MonoMind
 
-[![Build Status](https://github.com/your-username/mono-mind/workflows/CI/badge.svg)](https://github.com/your-username/mono-mind/actions)
-[![Release](https://github.com/your-username/mono-mind/workflows/Release/badge.svg)](https://github.com/your-username/mono-mind/actions)
-[![License](https://img.shields.io/github/license/your-username/mono-mind)](LICENSE)
+[![Build Status](https://github.com/nom-nom-hub/mono-mind/workflows/CI/badge.svg)](https://github.com/nom-nom-hub/mono-mind/actions)
+[![Release](https://github.com/nom-nom-hub/mono-mind/workflows/Release/badge.svg)](https://github.com/nom-nom-hub/mono-mind/actions)
+[![License](https://img.shields.io/github/license/nom-nom-hub/mono-mind)](LICENSE)
 
 An AI-powered development assistant designed to autonomously manage monorepos and complex codebases.
 
@@ -20,12 +20,12 @@ An AI-powered development assistant designed to autonomously manage monorepos an
 ## Installation
 
 ### Download Pre-built Binaries
-Visit the [Releases](https://github.com/your-username/mono-mind/releases) page to download pre-built binaries for your platform.
+Visit the [Releases](https://github.com/nom-nom-hub/mono-mind/releases) page to download pre-built binaries for your platform.
 
 ### Build from Source
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/mono-mind.git
+git clone https://github.com/nom-nom-hub/mono-mind.git
 cd mono-mind
 
 # Build the binary
