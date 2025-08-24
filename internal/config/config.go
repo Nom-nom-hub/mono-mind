@@ -1,10 +1,12 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"mono-mind/internal/logger"
-	
+
 	"gopkg.in/yaml.v2"
 )
 
@@ -59,17 +61,37 @@ func DefaultConfig() *Config {
 func LoadConfig(configPath string) (*Config, error) {
 	// Use default config as base
 	config := DefaultConfig()
-	
+
+	// Validate the config path to prevent directory traversal attacks
+	cleanPath := filepath.Clean(configPath)
+
+	// Ensure the path is absolute and doesn't contain dangerous patterns
+	if !filepath.IsAbs(cleanPath) {
+		// Convert relative path to absolute
+		absPath, err := filepath.Abs(cleanPath)
+		if err != nil {
+			logger.Error("Failed to get absolute path for config", "path", configPath, "error", err)
+			return config, err
+		}
+		cleanPath = absPath
+	}
+
+	// Check for directory traversal patterns
+	if strings.Contains(cleanPath, "..") {
+		logger.Error("Invalid config path: contains directory traversal", "path", configPath)
+		return config, fmt.Errorf("invalid config path: %s", configPath)
+	}
+
 	// Check if config file exists
-	if _, err := os.Stat(configPath); os.IsNotExist(err) {
-		logger.Info("Config file not found, using defaults", "path", configPath)
+	if _, err := os.Stat(cleanPath); os.IsNotExist(err) {
+		logger.Info("Config file not found, using defaults", "path", cleanPath)
 		return config, nil
 	}
-	
+
 	// Read the config file
-	data, err := os.ReadFile(configPath)
+	data, err := os.ReadFile(cleanPath)
 	if err != nil {
-		logger.Error("Failed to read config file", "path", configPath, "error", err)
+		logger.Error("Failed to read config file", "path", cleanPath, "error", err)
 		return config, err
 	}
 	

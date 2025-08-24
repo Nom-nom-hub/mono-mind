@@ -128,7 +128,7 @@ func refactorFile(filePath, oldName, newName string, dryRun bool, result *Refact
 		return fmt.Errorf("error formatting file: %v", err)
 	}
 	
-	err = os.WriteFile(filePath, buf.Bytes(), 0644)
+	err = os.WriteFile(filePath, buf.Bytes(), 0600)
 	if err != nil {
 		return fmt.Errorf("error writing file: %v", err)
 	}
@@ -158,7 +158,7 @@ func Move(oldPath, newPath string, dryRun bool) *RefactorResult {
 	
 	// Create the destination directory if it doesn't exist
 	destDir := filepath.Dir(newPath)
-	err := os.MkdirAll(destDir, 0755)
+	err := os.MkdirAll(destDir, 0750)
 	if err != nil {
 		result.Errors = append(result.Errors, fmt.Sprintf("Error creating destination directory: %v", err))
 		return result

@@ -92,13 +92,19 @@ func buildModule(moduleName string, module analyzer.Module) error {
 	
 	var cmd *exec.Cmd
 	
-	// Validate the module path to prevent directory traversal attacks
+	// Validate the module path to prevent directory traversal and command injection attacks
 	// Clean the path to remove any .. or . components
 	cleanPath := filepath.Clean(module.Path)
-	
+
 	// Ensure the path is relative and doesn't start with ..
 	if filepath.IsAbs(cleanPath) || strings.HasPrefix(cleanPath, "..") {
 		return fmt.Errorf("invalid module path: %s", module.Path)
+	}
+
+	// Additional validation to prevent command injection
+	if strings.Contains(cleanPath, ";") || strings.Contains(cleanPath, "|") ||
+	   strings.Contains(cleanPath, "&") || strings.Contains(cleanPath, "`") {
+		return fmt.Errorf("module path contains potentially dangerous characters: %s", module.Path)
 	}
 	
 	switch module.Language {

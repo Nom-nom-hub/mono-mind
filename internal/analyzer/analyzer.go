@@ -131,11 +131,31 @@ func processFile(path string, info os.FileInfo, graph *RepoGraph) {
 // extractDependencies parses a file and extracts its dependencies using regex
 func extractDependencies(filePath, language string) []string {
 	dependencies := []string{}
-	
+
+	// Validate the file path to prevent directory traversal attacks
+	cleanPath := filepath.Clean(filePath)
+
+	// Ensure the path is absolute and doesn't contain dangerous patterns
+	if !filepath.IsAbs(cleanPath) {
+		// Convert relative path to absolute
+		absPath, err := filepath.Abs(cleanPath)
+		if err != nil {
+			logger.Error("Failed to get absolute path for file", "file", filePath, "error", err)
+			return dependencies
+		}
+		cleanPath = absPath
+	}
+
+	// Check for directory traversal patterns
+	if strings.Contains(cleanPath, "..") {
+		logger.Error("Invalid file path: contains directory traversal", "file", filePath)
+		return dependencies
+	}
+
 	// Read the file content
-	file, err := os.Open(filePath)
+	file, err := os.Open(cleanPath)
 	if err != nil {
-		logger.Error("Failed to open file", "file", filePath, "error", err)
+		logger.Error("Failed to open file", "file", cleanPath, "error", err)
 		return dependencies
 	}
 	defer file.Close()

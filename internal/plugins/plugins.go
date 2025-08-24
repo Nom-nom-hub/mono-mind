@@ -1,9 +1,11 @@
 package plugins
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 	"mono-mind/internal/logger"
 )
 
@@ -17,6 +19,60 @@ func NewPluginManager() *PluginManager {
 	return &PluginManager{
 		Plugins: make(map[string][]string),
 	}
+}
+
+// validatePluginPath validates that a plugin path is safe to execute
+func validatePluginPath(pluginPath, pluginsDir string) (string, error) {
+	// Clean the path to remove any .. or . components
+	cleanPath := filepath.Clean(pluginPath)
+
+	// Get absolute path
+	absPath, err := filepath.Abs(cleanPath)
+	if err != nil {
+		return "", fmt.Errorf("failed to get absolute path: %v", err)
+	}
+
+	// Ensure the path doesn't contain dangerous patterns
+	if strings.Contains(absPath, "..") {
+		return "", fmt.Errorf("plugin path contains directory traversal: %s", pluginPath)
+	}
+
+	// If a plugins directory is specified, ensure the plugin is within it
+	if pluginsDir != "" {
+		pluginsAbsDir, err := filepath.Abs(pluginsDir)
+		if err != nil {
+			return "", fmt.Errorf("failed to get plugins directory absolute path: %v", err)
+		}
+
+		// Check if the plugin path is within the plugins directory
+		relPath, err := filepath.Rel(pluginsAbsDir, absPath)
+		if err != nil || strings.HasPrefix(relPath, "..") {
+			return "", fmt.Errorf("plugin path is outside allowed directory: %s", pluginPath)
+		}
+	}
+
+	// Validate file extension
+	ext := filepath.Ext(absPath)
+	allowedExts := []string{".sh", ".py", ".js", ".bash", ".zsh"}
+	isAllowed := false
+	for _, allowedExt := range allowedExts {
+		if ext == allowedExt {
+			isAllowed = true
+			break
+		}
+	}
+
+	// For files without extensions, check if they're executable (but this is risky)
+	if ext == "" {
+		// Only allow if explicitly configured - for now, reject
+		return "", fmt.Errorf("plugin must have a valid extension: %s", pluginPath)
+	}
+
+	if !isAllowed {
+		return "", fmt.Errorf("plugin has disallowed extension: %s", ext)
+	}
+
+	return absPath, nil
 }
 
 // RegisterPlugin registers a plugin for a specific hook
@@ -47,31 +103,32 @@ func (pm *PluginManager) ExecuteHook(hook string) error {
 			continue
 		}
 		
-		// Validate that the plugin path is within the expected directory
-		// This helps prevent directory traversal attacks
-		absPluginPath, err := filepath.Abs(pluginPath)
+		// Validate the plugin path for security
+		// This prevents command injection and directory traversal attacks
+		validatedPath, err := validatePluginPath(pluginPath, "plugins")
 		if err != nil {
-			logger.Error("Failed to get absolute path for plugin", "plugin", pluginPath, "error", err)
+			logger.Error("Plugin path validation failed", "plugin", pluginPath, "error", err)
 			continue
 		}
-		
+
 		// Determine how to execute the plugin based on its extension
-		ext := filepath.Ext(absPluginPath)
+		ext := filepath.Ext(validatedPath)
 		var cmd *exec.Cmd
-		
+
 		switch ext {
-		case ".sh":
+		case ".sh", ".bash", ".zsh":
 			// Shell script
-			cmd = exec.Command("bash", absPluginPath)
+			cmd = exec.Command("bash", validatedPath)
 		case ".py":
 			// Python script
-			cmd = exec.Command("python", absPluginPath)
+			cmd = exec.Command("python", validatedPath)
 		case ".js":
 			// JavaScript file
-			cmd = exec.Command("node", absPluginPath)
+			cmd = exec.Command("node", validatedPath)
 		default:
-			// Try to execute directly (could be a binary)
-			cmd = exec.Command(absPluginPath)
+			// This should not happen due to validation, but handle gracefully
+			logger.Error("Unexpected plugin extension after validation", "plugin", validatedPath, "extension", ext)
+			continue
 		}
 		
 		// Execute the plugin

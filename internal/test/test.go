@@ -81,13 +81,19 @@ func runTestsForModule(moduleName string, module analyzer.Module) (bool, error) 
 	// In a real system, we would determine the appropriate test command
 	// based on the language and project configuration
 	
-	// Validate the module path to prevent directory traversal attacks
+	// Validate the module path to prevent directory traversal and command injection attacks
 	// Clean the path to remove any .. or . components
 	cleanPath := filepath.Clean(module.Path)
-	
+
 	// Ensure the path is relative and doesn't start with ..
 	if filepath.IsAbs(cleanPath) || strings.HasPrefix(cleanPath, "..") {
 		return false, fmt.Errorf("invalid module path: %s", module.Path)
+	}
+
+	// Additional validation to prevent command injection
+	if strings.Contains(cleanPath, ";") || strings.Contains(cleanPath, "|") ||
+	   strings.Contains(cleanPath, "&") || strings.Contains(cleanPath, "`") {
+		return false, fmt.Errorf("module path contains potentially dangerous characters: %s", module.Path)
 	}
 	
 	var cmd *exec.Cmd

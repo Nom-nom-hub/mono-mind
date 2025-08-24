@@ -168,6 +168,18 @@ func generateChangelog(fromVersion, toVersion string) (string, error) {
 	} else {
 		// Sanitize the version string to prevent command injection
 		sanitizedVersion := sanitizeVersion(fromVersion)
+
+		// Additional validation for the sanitized version
+		if len(sanitizedVersion) == 0 || len(sanitizedVersion) > 50 {
+			return "", fmt.Errorf("invalid version string after sanitization")
+		}
+
+		// Ensure it matches a basic version pattern (e.g., x.y.z)
+		versionPattern := regexp.MustCompile(`^[a-zA-Z0-9.\-_]+$`)
+		if !versionPattern.MatchString(sanitizedVersion) {
+			return "", fmt.Errorf("sanitized version contains invalid characters")
+		}
+
 		cmd = exec.Command("git", "log", fmt.Sprintf("v%s..HEAD", sanitizedVersion), "--oneline", "--no-merges")
 	}
 	
@@ -206,23 +218,25 @@ func generateChangelog(fromVersion, toVersion string) (string, error) {
 	// saveChangelog saves the changelog to a file
 	func saveChangelog(changelog, version string) error {
 		filename := "CHANGELOG.md"
-	
-	// Check if file exists
-	var content string
-	if _, err := os.Stat(filename); err == nil {
-		// File exists, read current content
-		data, err := os.ReadFile(filename)
-		if err != nil {
-			return err
+
+		logger.Info("Saving changelog", "version", version, "filename", filename)
+
+		// Check if file exists
+		var content string
+		if _, err := os.Stat(filename); err == nil {
+			// File exists, read current content
+			data, err := os.ReadFile(filename)
+			if err != nil {
+				return err
+			}
+			content = string(data)
 		}
-		content = string(data)
-	}
-	
-	// Prepend new changelog entry
-	newContent := changelog + "\n" + content
-	
-	// Write to file
-	return os.WriteFile(filename, []byte(newContent), 0644)
+
+		// Prepend new changelog entry
+		newContent := changelog + "\n" + content
+
+		// Write to file
+		return os.WriteFile(filename, []byte(newContent), 0600)
 }
 
 // updateVersionInFiles updates version in relevant files
@@ -251,14 +265,25 @@ func publishRelease(version string) error {
 	
 	// Sanitize the version string to prevent command injection
 	sanitizedVersion := sanitizeVersion(version)
-	
+
+	// Additional validation for the sanitized version
+	if len(sanitizedVersion) == 0 || len(sanitizedVersion) > 50 {
+		return fmt.Errorf("invalid version string after sanitization")
+	}
+
+	// Ensure it matches a basic version pattern (e.g., x.y.z)
+	versionPattern := regexp.MustCompile(`^[a-zA-Z0-9.\-_]+$`)
+	if !versionPattern.MatchString(sanitizedVersion) {
+		return fmt.Errorf("sanitized version contains invalid characters")
+	}
+
 	// Create Git tag
 	cmd := exec.Command("git", "tag", "-a", fmt.Sprintf("v%s", sanitizedVersion), "-m", fmt.Sprintf("Release version %s", sanitizedVersion))
 	err := cmd.Run()
 	if err != nil {
 		return fmt.Errorf("failed to create Git tag: %v", err)
 	}
-	
+
 	// Push tag
 	cmd = exec.Command("git", "push", "origin", fmt.Sprintf("v%s", sanitizedVersion))
 	err = cmd.Run()
