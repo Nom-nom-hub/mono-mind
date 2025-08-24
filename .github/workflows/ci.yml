@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
+    - name: Build
+      run: go build -v ./cmd/mono
+
+    - name: Test
+      run: go test -v -cover ./...
+
+    - name: Lint
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: latest
+
+    - name: Security Scan
+      uses: securego/gosec@master
+      with:
+        args: ./...
+
+    - name: Validate Documentation
+      run: |
+        # Check that all documentation files exist
+        docs=(
+          "docs/README.md"
+          "docs/QUICK_START.md"
+          "docs/USER_GUIDE.md"
+          "docs/API.md"
+          "docs/DEVELOPER_GUIDE.md"
+          "docs/VISUALIZATION_GUIDE.md"
+          "docs/PLUGIN_GUIDE.md"
+          "docs/CHANGELOG_GUIDE.md"
+          "docs/TROUBLESHOOTING.md"
+        )
+        
+        for doc in "${docs[@]}"; do
+          if [ ! -f "$doc" ]; then
+            echo "Missing documentation file: $doc"
+            exit 1
+          fi
+        done
+        
+        echo "All documentation files present"
