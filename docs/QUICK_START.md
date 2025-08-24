@@ -2,15 +2,19 @@
 
 ## What is MonoMind?
 
-MonoMind is an AI-powered development assistant that helps you manage complex codebases. It automates repository analysis, impact prediction, build orchestration, testing, refactoring, and release management.
+MonoMind is an AI-powered development assistant that helps you manage complex
+codebases. It automates repository analysis, impact prediction, build
+orchestration, testing, refactoring, and release management.
 
 ## Installation
 
 ### Prerequisites
+
 - Go 1.19 or higher
 - Git (for version control features)
 
 ### Install MonoMind
+
 ```bash
 # Clone the repository
 git clone https://github.com/nom-nom-hub/mono-mind.git
@@ -35,6 +39,7 @@ mono.exe analyze
 ```
 
 Output:
+
 ```
 Dependency Graph:
 =================

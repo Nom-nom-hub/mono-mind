@@ -1,6 +1,7 @@
 # MonoMind Plugin Development Guide
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Plugin System Overview](#plugin-system-overview)
 3. [Plugin Hooks](#plugin-hooks)
@@ -13,11 +14,13 @@
 
 ## Introduction
 
-This guide explains how to create and use plugins with MonoMind. Plugins allow you to extend MonoMind's functionality without modifying the core codebase.
+This guide explains how to create and use plugins with MonoMind. Plugins allow
+you to extend MonoMind's functionality without modifying the core codebase.
 
 ## Plugin System Overview
 
 ### How Plugins Work
+
 1. Plugins are external programs or scripts
 2. They are executed at specific hooks during MonoMind operations
 3. Plugins receive context information through environment variables
@@ -25,9 +28,12 @@ This guide explains how to create and use plugins with MonoMind. Plugins allow y
 5. Plugin output is logged by MonoMind
 
 ### Plugin Directory
-By default, MonoMind looks for plugins in the `plugins/` directory in your project root.
+
+By default, MonoMind looks for plugins in the `plugins/` directory in your
+project root.
 
 ### Plugin Discovery
+
 - Plugins are automatically discovered based on filename
 - Filename format: `hookname.extension`
 - Example: `pre-build.sh`, `post-test.py`
@@ -35,6 +41,7 @@ By default, MonoMind looks for plugins in the `plugins/` directory in your proje
 ## Plugin Hooks
 
 ### Available Hooks
+
 - **pre-analyze**: Before repository analysis
 - **post-analyze**: After repository analysis
 - **pre-build**: Before builds
@@ -47,12 +54,15 @@ By default, MonoMind looks for plugins in the `plugins/` directory in your proje
 - **post-release**: After releases
 
 ### Hook Execution Order
+
 1. `pre-*` hooks execute before the main operation
 2. Main operation executes
 3. `post-*` hooks execute after the main operation
 
 ### Hook Context
+
 Plugins receive context information through:
+
 - Environment variables
 - Command line arguments
 - Standard input (for complex data)

@@ -1,6 +1,7 @@
 # MonoMind User Guide
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Installation](#installation)
 3. [Quick Start](#quick-start)
@@ -18,9 +19,12 @@
 
 ## Introduction
 
-Welcome to MonoMind, your AI-powered assistant for managing complex codebases! This guide will help you get the most out of MonoMind's powerful features.
+Welcome to MonoMind, your AI-powered assistant for managing complex
+codebases! This guide will help you get the most out of MonoMind's powerful
+features.
 
 MonoMind is designed to help developers:
+
 - Understand complex repository structures
 - Predict the impact of code changes
 - Optimize build and test processes
