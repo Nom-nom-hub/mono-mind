@@ -1,6 +1,17 @@
 # Changelog
 
 ## [0.1.0] - 2025-08-23
+### Added
+- Initial release of **MonoMind** MVP with:
+  - CLI
+  - Analyzer
+  - Build
+  - Impact
+  - Refactor
+  - Release modules
 
-- Enhanced MonoMind with configuration, visualization, and plugin system (d9344f4)
-- Initial commit: MonoMind MVP with CLI, analyzer, build, impact, refactor, and release modules (f732222)
+### Improved
+- Enhanced **MonoMind** with:
+  - Configuration system
+  - Visualization support
+  - Plugin architecture
