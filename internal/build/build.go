@@ -114,14 +114,15 @@ func buildModule(moduleName string, module analyzer.Module) error {
 		// For Python projects, we might run a build script
 		cmd = exec.Command("python", "setup.py", "build")
 		cmd.Dir = cleanPath
-	
+	}
+
 	// Execute the command
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		logger.Error("Build failed", "module", moduleName, "output", string(output), "error", err)
 		return err
 	}
-	
+
 	logger.Debug("Build successful", "module", moduleName, "output", string(output))
 	return nil
 }

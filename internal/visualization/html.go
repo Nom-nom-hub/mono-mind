@@ -102,6 +102,20 @@ const HTMLTemplate = `
 
 // PrintHTMLDependencyGraph prints the dependency graph as an HTML file
 func PrintHTMLDependencyGraph(graph *analyzer.RepoGraph, filename string) error {
+	// Validate the filename to prevent directory traversal attacks
+	// Clean the path and ensure it's a simple filename
+	cleanFilename := filepath.Clean(filename)
+	
+	// Ensure the filename doesn't contain path separators
+	if filepath.Dir(cleanFilename) != "." {
+		return fmt.Errorf("invalid filename: %s", filename)
+	}
+	
+	// Ensure the filename has an html extension
+	if filepath.Ext(cleanFilename) != ".html" {
+		cleanFilename += ".html"
+	}
+	
 	// Create a map of module names to their dependents
 	dependentsMap := make(map[string][]string)
 	for moduleName := range graph.Modules {
@@ -123,7 +137,7 @@ func PrintHTMLDependencyGraph(graph *analyzer.RepoGraph, filename string) error 
 	}
 	
 	// Create the output file
-	file, err := os.Create(filename)
+	file, err := os.Create(cleanFilename)
 	if err != nil {
 		return fmt.Errorf("error creating file: %v", err)
 	}
