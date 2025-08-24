@@ -7,7 +7,6 @@ import (
 	"go/format"
 	"go/parser"
 	"go/token"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -129,7 +128,7 @@ func refactorFile(filePath, oldName, newName string, dryRun bool, result *Refact
 		return fmt.Errorf("error formatting file: %v", err)
 	}
 	
-	err = ioutil.WriteFile(filePath, buf.Bytes(), 0644)
+	err = os.WriteFile(filePath, buf.Bytes(), 0644)
 	if err != nil {
 		return fmt.Errorf("error writing file: %v", err)
 	}

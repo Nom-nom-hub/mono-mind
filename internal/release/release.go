@@ -107,9 +107,7 @@ func getCurrentVersion() (string, error) {
 	
 	version := strings.TrimSpace(string(output))
 	// Remove 'v' prefix if present
-	if strings.HasPrefix(version, "v") {
-		version = version[1:]
-	}
+	version = strings.TrimPrefix(version, "v")
 	
 	return version, nil
 }
@@ -127,7 +125,11 @@ func bumpVersion(version, bumpType string) (string, error) {
 	minor := 0
 	patch := 0
 	
-	fmt.Sscanf(version, "%d.%d.%d", &major, &minor, &patch)
+	_, err := fmt.Sscanf(version, "%d.%d.%d", &major, &minor, &patch)
+	if err != nil {
+		logger.Error("Failed to parse version", "error", err)
+		return "", err
+	}
 	
 	// Bump based on type
 	switch bumpType {
@@ -191,9 +193,9 @@ func generateChangelog(fromVersion, toVersion string) (string, error) {
 	return changelog.String(), nil
 }
 
-// saveChangelog saves the changelog to a file
-func saveChangelog(changelog, version string) error {
-	filename := fmt.Sprintf("CHANGELOG.md")
+	// saveChangelog saves the changelog to a file
+	func saveChangelog(changelog, version string) error {
+		filename := "CHANGELOG.md"
 	
 	// Check if file exists
 	var content string

@@ -236,10 +236,7 @@ func isLocalImport(dep string) bool {
 func buildDependencyEdges(graph *RepoGraph) {
 	// For each module, create edges based on its dependencies
 	for moduleName, module := range graph.Modules {
-		for _, dep := range module.Dependencies {
-			// Add edge from this module to its dependency
-			graph.Edges[moduleName] = append(graph.Edges[moduleName], dep)
-		}
+		graph.Edges[moduleName] = append(graph.Edges[moduleName], module.Dependencies...)
 	}
 }
 

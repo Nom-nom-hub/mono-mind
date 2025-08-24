@@ -28,10 +28,14 @@ func IncrementalBuild(graph *analyzer.RepoGraph, config BuildConfig) *BuildResul
 	
 	// Initialize plugin manager
 	pluginManager := plugins.NewPluginManager()
-	pluginManager.LoadPluginsFromDir("plugins")
+	if err := pluginManager.LoadPluginsFromDir("plugins"); err != nil {
+		logger.Error("Failed to load plugins", "error", err)
+	}
 	
 	// Execute pre-build plugins
-	pluginManager.ExecuteHook("pre-build")
+	if err := pluginManager.ExecuteHook("pre-build"); err != nil {
+		logger.Error("Failed to execute pre-build hook", "error", err)
+	}
 	
 	result := &BuildResult{
 		ModulesBuilt:  []string{},
@@ -66,7 +70,9 @@ func IncrementalBuild(graph *analyzer.RepoGraph, config BuildConfig) *BuildResul
 	}
 	
 	// Execute post-build plugins
-	pluginManager.ExecuteHook("post-build")
+	if err := pluginManager.ExecuteHook("post-build"); err != nil {
+		logger.Error("Failed to execute post-build hook", "error", err)
+	}
 	
 	logger.Info("Incremental build completed", 
 		"modules_built", len(result.ModulesBuilt),
