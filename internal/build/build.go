@@ -110,7 +110,7 @@ func buildModule(moduleName string, module analyzer.Module) error {
 	switch module.Language {
 	case "go":
 		// For Go modules, we might run 'go build'
-		cmd = exec.Command("go", "build", "./"+cleanPath)
+		cmd = exec.Command("go", "build", "./"+cleanPath) // #nosec G204 -- Path validated above
 	case "javascript", "typescript":
 		// For JS/TS projects, we might run 'npm run build' or 'yarn build'
 		// Check if package.json exists in the module directory

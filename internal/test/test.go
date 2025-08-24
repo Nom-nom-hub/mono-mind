@@ -101,7 +101,7 @@ func runTestsForModule(moduleName string, module analyzer.Module) (bool, error) 
 	switch module.Language {
 	case "go":
 		// For Go modules, we might run 'go test'
-		cmd = exec.Command("go", "test", "./"+cleanPath+"/...")
+		cmd = exec.Command("go", "test", "./"+cleanPath+"/...") // #nosec G204 -- Path validated above
 	case "javascript", "typescript":
 		// For JS/TS projects, we might run 'npm test' or 'yarn test'
 		// Check if package.json exists in the module directory

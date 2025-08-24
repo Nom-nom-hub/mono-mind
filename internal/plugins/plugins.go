@@ -118,13 +118,13 @@ func (pm *PluginManager) ExecuteHook(hook string) error {
 		switch ext {
 		case ".sh", ".bash", ".zsh":
 			// Shell script
-			cmd = exec.Command("bash", validatedPath)
+			cmd = exec.Command("bash", validatedPath) // #nosec G204 -- Path validated by validatePluginPath()
 		case ".py":
 			// Python script
-			cmd = exec.Command("python", validatedPath)
+			cmd = exec.Command("python", validatedPath) // #nosec G204 -- Path validated by validatePluginPath()
 		case ".js":
 			// JavaScript file
-			cmd = exec.Command("node", validatedPath)
+			cmd = exec.Command("node", validatedPath) // #nosec G204 -- Path validated by validatePluginPath()
 		default:
 			// This should not happen due to validation, but handle gracefully
 			logger.Error("Unexpected plugin extension after validation", "plugin", validatedPath, "extension", ext)

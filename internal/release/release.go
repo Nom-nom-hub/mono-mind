@@ -180,7 +180,7 @@ func generateChangelog(fromVersion, toVersion string) (string, error) {
 			return "", fmt.Errorf("sanitized version contains invalid characters")
 		}
 
-		cmd = exec.Command("git", "log", fmt.Sprintf("v%s..HEAD", sanitizedVersion), "--oneline", "--no-merges")
+		cmd = exec.Command("git", "log", fmt.Sprintf("v%s..HEAD", sanitizedVersion), "--oneline", "--no-merges") // #nosec G204 -- Version sanitized above
 	}
 	
 	output, err := cmd.Output()
@@ -278,14 +278,14 @@ func publishRelease(version string) error {
 	}
 
 	// Create Git tag
-	cmd := exec.Command("git", "tag", "-a", fmt.Sprintf("v%s", sanitizedVersion), "-m", fmt.Sprintf("Release version %s", sanitizedVersion))
+	cmd := exec.Command("git", "tag", "-a", fmt.Sprintf("v%s", sanitizedVersion), "-m", fmt.Sprintf("Release version %s", sanitizedVersion)) // #nosec G204 -- Version sanitized above
 	err := cmd.Run()
 	if err != nil {
 		return fmt.Errorf("failed to create Git tag: %v", err)
 	}
 
 	// Push tag
-	cmd = exec.Command("git", "push", "origin", fmt.Sprintf("v%s", sanitizedVersion))
+	cmd = exec.Command("git", "push", "origin", fmt.Sprintf("v%s", sanitizedVersion)) // #nosec G204 -- Version sanitized above
 	err = cmd.Run()
 	if err != nil {
 		return fmt.Errorf("failed to push Git tag: %v", err)

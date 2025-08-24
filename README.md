@@ -20,9 +20,11 @@ An AI-powered development assistant designed to autonomously manage monorepos an
 ## Installation
 
 ### Download Pre-built Binaries
+
 Visit the [Releases](https://github.com/nom-nom-hub/mono-mind/releases) page to download pre-built binaries for your platform.
 
 ### Build from Source
+
 ```bash
 # Clone the repository
 git clone https://github.com/nom-nom-hub/mono-mind.git
