@@ -1,7 +1,10 @@
 package build
 
 import (
+	"fmt"
 	"os/exec"
+	"path/filepath"
+	"strings"
 	"mono-mind/internal/analyzer"
 	"mono-mind/internal/logger"
 	"mono-mind/internal/plugins"
@@ -89,24 +92,28 @@ func buildModule(moduleName string, module analyzer.Module) error {
 	
 	var cmd *exec.Cmd
 	
+	// Validate the module path to prevent directory traversal attacks
+	// Clean the path to remove any .. or . components
+	cleanPath := filepath.Clean(module.Path)
+	
+	// Ensure the path is relative and doesn't start with ..
+	if filepath.IsAbs(cleanPath) || strings.HasPrefix(cleanPath, "..") {
+		return fmt.Errorf("invalid module path: %s", module.Path)
+	}
+	
 	switch module.Language {
 	case "go":
 		// For Go modules, we might run 'go build'
-		cmd = exec.Command("go", "build", "./"+module.Path)
+		cmd = exec.Command("go", "build", "./"+cleanPath)
 	case "javascript", "typescript":
 		// For JS/TS projects, we might run 'npm run build' or 'yarn build'
 		// Check if package.json exists in the module directory
 		cmd = exec.Command("npm", "run", "build")
-		cmd.Dir = module.Path
+		cmd.Dir = cleanPath
 	case "python":
-		// For Python projects, we might run 'python setup.py build'
+		// For Python projects, we might run a build script
 		cmd = exec.Command("python", "setup.py", "build")
-		cmd.Dir = module.Path
-	default:
-		// Default build command
-		cmd = exec.Command("make")
-		cmd.Dir = module.Path
-	}
+		cmd.Dir = cleanPath
 	
 	// Execute the command
 	output, err := cmd.CombinedOutput()

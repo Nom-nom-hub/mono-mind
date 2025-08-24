@@ -1,7 +1,10 @@
 package test
 
 import (
+	"fmt"
 	"os/exec"
+	"path/filepath"
+	"strings"
 	"mono-mind/internal/analyzer"
 	"mono-mind/internal/logger"
 )
@@ -78,21 +81,30 @@ func runTestsForModule(moduleName string, module analyzer.Module) (bool, error) 
 	// In a real system, we would determine the appropriate test command
 	// based on the language and project configuration
 	
+	// Validate the module path to prevent directory traversal attacks
+	// Clean the path to remove any .. or . components
+	cleanPath := filepath.Clean(module.Path)
+	
+	// Ensure the path is relative and doesn't start with ..
+	if filepath.IsAbs(cleanPath) || strings.HasPrefix(cleanPath, "..") {
+		return false, fmt.Errorf("invalid module path: %s", module.Path)
+	}
+	
 	var cmd *exec.Cmd
 	
 	switch module.Language {
 	case "go":
 		// For Go modules, we might run 'go test'
-		cmd = exec.Command("go", "test", "./"+module.Path+"/...")
+		cmd = exec.Command("go", "test", "./"+cleanPath+"/...")
 	case "javascript", "typescript":
 		// For JS/TS projects, we might run 'npm test' or 'yarn test'
 		// Check if package.json exists in the module directory
 		cmd = exec.Command("npm", "test")
-		cmd.Dir = module.Path
+		cmd.Dir = cleanPath
 	case "python":
 		// For Python projects, we might run 'python -m pytest'
 		cmd = exec.Command("python", "-m", "pytest")
-		cmd.Dir = module.Path
+		cmd.Dir = cleanPath
 	default:
 		// Default test command
 		cmd = exec.Command("make", "test")

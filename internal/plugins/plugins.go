@@ -47,23 +47,31 @@ func (pm *PluginManager) ExecuteHook(hook string) error {
 			continue
 		}
 		
+		// Validate that the plugin path is within the expected directory
+		// This helps prevent directory traversal attacks
+		absPluginPath, err := filepath.Abs(pluginPath)
+		if err != nil {
+			logger.Error("Failed to get absolute path for plugin", "plugin", pluginPath, "error", err)
+			continue
+		}
+		
 		// Determine how to execute the plugin based on its extension
-		ext := filepath.Ext(pluginPath)
+		ext := filepath.Ext(absPluginPath)
 		var cmd *exec.Cmd
 		
 		switch ext {
 		case ".sh":
 			// Shell script
-			cmd = exec.Command("bash", pluginPath)
+			cmd = exec.Command("bash", absPluginPath)
 		case ".py":
 			// Python script
-			cmd = exec.Command("python", pluginPath)
+			cmd = exec.Command("python", absPluginPath)
 		case ".js":
 			// JavaScript file
-			cmd = exec.Command("node", pluginPath)
+			cmd = exec.Command("node", absPluginPath)
 		default:
 			// Try to execute directly (could be a binary)
-			cmd = exec.Command(pluginPath)
+			cmd = exec.Command(absPluginPath)
 		}
 		
 		// Execute the plugin

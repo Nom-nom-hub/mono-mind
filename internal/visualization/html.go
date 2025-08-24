@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"os"
+	"path/filepath"
 	"mono-mind/internal/analyzer"
 )
 

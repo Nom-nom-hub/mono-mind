@@ -4,10 +4,19 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"regexp"
 	"strings"
 	"time"
 	"mono-mind/internal/logger"
 )
+
+// sanitizeVersion removes any potentially dangerous characters from a version string
+// Only allows alphanumeric characters, dots, hyphens, and underscores
+func sanitizeVersion(version string) string {
+	// Compile a regex that matches only safe characters
+	re := regexp.MustCompile(`[^a-zA-Z0-9.\-_]`)
+	return re.ReplaceAllString(version, "")
+}
 
 // ReleaseConfig holds configuration for the release process
 type ReleaseConfig struct {
@@ -157,8 +166,9 @@ func generateChangelog(fromVersion, toVersion string) (string, error) {
 		// If this is the first release, get all commits
 		cmd = exec.Command("git", "log", "--oneline", "--no-merges")
 	} else {
-		// Get commits since the last version
-		cmd = exec.Command("git", "log", fmt.Sprintf("v%s..HEAD", fromVersion), "--oneline", "--no-merges")
+		// Sanitize the version string to prevent command injection
+		sanitizedVersion := sanitizeVersion(fromVersion)
+		cmd = exec.Command("git", "log", fmt.Sprintf("v%s..HEAD", sanitizedVersion), "--oneline", "--no-merges")
 	}
 	
 	output, err := cmd.Output()
@@ -239,15 +249,18 @@ func publishRelease(version string) error {
 	// 2. Push the tag to remote repository
 	// 3. Publish to package registries (npm, PyPI, etc.)
 	
+	// Sanitize the version string to prevent command injection
+	sanitizedVersion := sanitizeVersion(version)
+	
 	// Create Git tag
-	cmd := exec.Command("git", "tag", "-a", fmt.Sprintf("v%s", version), "-m", fmt.Sprintf("Release version %s", version))
+	cmd := exec.Command("git", "tag", "-a", fmt.Sprintf("v%s", sanitizedVersion), "-m", fmt.Sprintf("Release version %s", sanitizedVersion))
 	err := cmd.Run()
 	if err != nil {
 		return fmt.Errorf("failed to create Git tag: %v", err)
 	}
 	
 	// Push tag
-	cmd = exec.Command("git", "push", "origin", fmt.Sprintf("v%s", version))
+	cmd = exec.Command("git", "push", "origin", fmt.Sprintf("v%s", sanitizedVersion))
 	err = cmd.Run()
 	if err != nil {
 		return fmt.Errorf("failed to push Git tag: %v", err)
