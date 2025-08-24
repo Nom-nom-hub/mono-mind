@@ -2,74 +2,73 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Plugin System Overview](#plugin-system-overview)
-3. [Plugin Hooks](#plugin-hooks)
-4. [Creating Plugins](#creating-plugins)
-5. [Plugin Types](#plugin-types)
-6. [Plugin Configuration](#plugin-configuration)
-7. [Best Practices](#best-practices)
-8. [Examples](#examples)
-9. [Distribution](#distribution)
+1. [Introduction](#introduction)  
+2. [Plugin System Overview](#plugin-system-overview)  
+3. [Plugin Hooks](#plugin-hooks)  
+4. [Creating Plugins](#creating-plugins)  
+5. [Plugin Types](#plugin-types)  
+6. [Plugin Configuration](#plugin-configuration)  
+7. [Best Practices](#best-practices)  
+8. [Examples](#examples)  
+9. [Distribution](#distribution)  
 
 ## Introduction
 
-This guide explains how to create and use plugins with MonoMind. Plugins allow
-you to extend MonoMind's functionality without modifying the core codebase.
+This guide explains how to create and use plugins with MonoMind. Plugins allow you to extend MonoMind's functionality without modifying the core codebase.
 
 ## Plugin System Overview
 
 ### How Plugins Work
 
-1. Plugins are external programs or scripts
-2. They are executed at specific hooks during MonoMind operations
-3. Plugins receive context information through environment variables
-4. Plugins can modify the environment or filesystem
-5. Plugin output is logged by MonoMind
+1. Plugins are external programs or scripts  
+2. They are executed at specific hooks during MonoMind operations  
+3. Plugins receive context information through environment variables  
+4. Plugins can modify the environment or filesystem  
+5. Plugin output is logged by MonoMind  
 
 ### Plugin Directory
 
-By default, MonoMind looks for plugins in the `plugins/` directory in your
-project root.
+By default, MonoMind looks for plugins in the `plugins/` directory in your project root.
 
 ### Plugin Discovery
 
-- Plugins are automatically discovered based on filename
-- Filename format: `hookname.extension`
-- Example: `pre-build.sh`, `post-test.py`
+- Plugins are automatically discovered based on filename  
+- Filename format: `hookname.extension`  
+- Example: `pre-build.sh`, `post-test.py`  
 
 ## Plugin Hooks
 
 ### Available Hooks
 
-- **pre-analyze**: Before repository analysis
-- **post-analyze**: After repository analysis
-- **pre-build**: Before builds
-- **post-build**: After builds
-- **pre-test**: Before tests
-- **post-test**: After tests
-- **pre-refactor**: Before refactoring
-- **post-refactor**: After refactoring
-- **pre-release**: Before releases
-- **post-release**: After releases
+- **pre-analyze**: Before repository analysis  
+- **post-analyze**: After repository analysis  
+- **pre-build**: Before builds  
+- **post-build**: After builds  
+- **pre-test**: Before tests  
+- **post-test**: After tests  
+- **pre-refactor**: Before refactoring  
+- **post-refactor**: After refactoring  
+- **pre-release**: Before releases  
+- **post-release**: After releases  
 
 ### Hook Execution Order
 
-1. `pre-*` hooks execute before the main operation
-2. Main operation executes
-3. `post-*` hooks execute after the main operation
+1. `pre-*` hooks execute before the main operation  
+2. Main operation executes  
+3. `post-*` hooks execute after the main operation  
 
 ### Hook Context
 
 Plugins receive context information through:
 
-- Environment variables
-- Command line arguments
-- Standard input (for complex data)
+- Environment variables  
+- Command line arguments  
+- Standard input (for complex data)  
 
 ## Creating Plugins
 
 ### Basic Plugin Structure
+
 ```bash
 #!/bin/bash
 # plugins/pre-build.sh
@@ -86,24 +85,28 @@ echo "MonoMind version: $MONO_VERSION"
 
 # Exit with appropriate code
 exit 0
-```
+````
 
 ### Required Elements
+
 1. **Shebang** (for script plugins): `#!/bin/bash`, `#!/usr/bin/env python3`, etc.
 2. **Executable permissions**: `chmod +x plugin-file`
 3. **Proper exit codes**: 0 for success, non-zero for errors
 4. **Error handling**: Handle errors gracefully
 
 ### Environment Variables
+
 Plugins have access to these environment variables:
-- `MONO_VERSION`: Current MonoMind version
-- `MONO_HOOK`: Current hook name
-- `MONO_WORKDIR`: Working directory
-- `MONO_CONFIG`: Path to config file
+
+* `MONO_VERSION`: Current MonoMind version
+* `MONO_HOOK`: Current hook name
+* `MONO_WORKDIR`: Working directory
+* `MONO_CONFIG`: Path to config file
 
 ## Plugin Types
 
 ### Shell Scripts
+
 ```bash
 #!/bin/bash
 # plugins/post-build.sh
@@ -112,6 +115,7 @@ echo "Build completed at $(date)"
 ```
 
 ### Python Scripts
+
 ```python
 #!/usr/bin/env python3
 # plugins/pre-test.py
@@ -127,6 +131,7 @@ print(f"Working directory: {os.getcwd()}")
 ```
 
 ### JavaScript Files
+
 ```javascript
 #!/usr/bin/env node
 // plugins/post-release.js
@@ -138,7 +143,9 @@ console.log(`Working directory: ${process.cwd()}`);
 ```
 
 ### Compiled Binaries
+
 Any executable binary can be used as a plugin:
+
 ```go
 // plugins/custom-plugin.go
 package main
@@ -159,14 +166,18 @@ Compile with: `go build -o plugins/custom-plugin plugins/custom-plugin.go`
 ## Plugin Configuration
 
 ### Plugin Directory Configuration
+
 You can configure the plugin directory in your config file:
+
 ```yaml
 plugins:
   directory: "./custom-plugins"
 ```
 
 ### Specific Plugin Configuration
+
 Configure individual plugins:
+
 ```yaml
 plugins:
   pre-build:
@@ -177,7 +188,9 @@ plugins:
 ```
 
 ### Plugin Parameters
+
 Pass parameters to plugins through environment variables:
+
 ```yaml
 plugins:
   pre-build:
@@ -190,6 +203,7 @@ plugins:
 ## Best Practices
 
 ### Error Handling
+
 ```bash
 #!/bin/bash
 # plugins/pre-build.sh
@@ -207,6 +221,7 @@ echo "Pre-build checks passed"
 ```
 
 ### Logging
+
 ```python
 #!/usr/bin/env python3
 # plugins/post-test.py
@@ -225,20 +240,23 @@ log("Post-test plugin completed")
 ```
 
 ### Resource Management
-- Clean up temporary files
-- Limit resource usage
-- Handle timeouts gracefully
-- Use non-blocking operations when possible
+
+* Clean up temporary files
+* Limit resource usage
+* Handle timeouts gracefully
+* Use non-blocking operations when possible
 
 ### Security
-- Validate input
-- Avoid executing untrusted code
-- Limit file system access
-- Use secure permissions
+
+* Validate input
+* Avoid executing untrusted code
+* Limit file system access
+* Use secure permissions
 
 ## Examples
 
 ### Pre-Build Validation Plugin
+
 ```bash
 #!/bin/bash
 # plugins/pre-build-validate.sh
@@ -264,6 +282,7 @@ echo "Build environment validation passed"
 ```
 
 ### Post-Test Reporting Plugin
+
 ```python
 #!/usr/bin/env python3
 # plugins/post-test-report.py
@@ -294,6 +313,7 @@ if __name__ == "__main__":
 ```
 
 ### Pre-Release Version Check Plugin
+
 ```javascript
 #!/usr/bin/env node
 // plugins/pre-release-check.js
@@ -321,13 +341,16 @@ console.log('Release check passed');
 ## Distribution
 
 ### Sharing Plugins
+
 1. **GitHub Gists**: Share single-file plugins
 2. **GitHub Repositories**: Share complex plugin collections
 3. **Package Managers**: Distribute through npm, PyPI, etc.
 4. **Direct Download**: Host plugins on your website
 
 ### Plugin Collections
+
 Create collections of related plugins:
+
 ```
 my-monomind-plugins/
 ├── build/
@@ -342,7 +365,9 @@ my-monomind-plugins/
 ```
 
 ### Installation Script
+
 Provide an installation script for your plugins:
+
 ```bash
 #!/bin/bash
 # install-plugins.sh
@@ -356,8 +381,10 @@ echo "Plugins installed successfully"
 ```
 
 ### Documentation
+
 When distributing plugins, include:
-- README with usage instructions
-- Example configuration
-- Troubleshooting guide
-- License information
+
+* README with usage instructions
+* Example configuration
+* Troubleshooting guide
+* License information

@@ -12,33 +12,31 @@
 9. [Best Practices](#best-practices)
 
 ## Introduction
-
 This guide explains how to use MonoMind's visualization features to understand your repository's structure and dependencies.
 
 ## Visualization Types
-
-MonoMind provides several visualization formats to suit different needs:
+MonoMind provides several visualization formats:
 
 ### Tree View
 - Hierarchical representation of modules and dependencies
 - Easy to understand nested relationships
-- Good for terminal-based workflows
+- Ideal for terminal workflows
 
 ### ASCII View
-- Box-style diagram representation
+- Box-style diagram
 - Visual separation of modules
 - Good for simple terminal displays
 
 ### Horizontal View
-- Linear representation of modules
+- Linear module representation
 - Shows relationships in a flow format
 - Good for understanding data flow
 
 ### HTML View
 - Interactive web-based visualization
 - Rich formatting and styling
-- Can be shared and viewed in browsers
-- Good for presentations and documentation
+- Shareable in browsers
+- Useful for presentations and documentation
 
 ## Tree Visualization
 
@@ -49,9 +47,10 @@ mono.exe visualize tree
 
 # Or simply
 mono.exe visualize
-```
+````
 
-### Output Format
+### Output Example
+
 ```
 Dependency Graph:
 =================
@@ -70,20 +69,22 @@ Dependency Graph:
 ```
 
 ### Features
-- Module names with language indicators
-- Clear dependency relationships
-- Reverse dependency tracking (used by)
-- File type icons
+
+* Module names with language indicators
+* Clear dependency relationships
+* Reverse dependency tracking (`used by`)
+* File type icons
 
 ## ASCII Visualization
 
 ### Basic Usage
+
 ```bash
-# Generate ASCII visualization
 mono.exe visualize ascii
 ```
 
-### Output Format
+### Output Example
+
 ```
 Dependency Graph (ASCII):
 ========================
@@ -111,20 +112,22 @@ Dependency Graph (ASCII):
 ```
 
 ### Features
-- Box-style module representation
-- Clear directional arrows
-- Language indicators
-- Visual separation of components
+
+* Box-style module representation
+* Clear directional arrows
+* Language indicators
+* Visual separation of components
 
 ## Horizontal Visualization
 
 ### Basic Usage
+
 ```bash
-# Generate horizontal visualization
 mono.exe visualize horizontal
 ```
 
-### Output Format
+### Output Example
+
 ```
 Dependency Graph (Horizontal):
 ==============================
@@ -142,28 +145,31 @@ Dependencies:
 ```
 
 ### Features
-- Linear module flow
-- Compact representation
-- Clear dependency listing
-- Good for understanding sequential relationships
+
+* Linear module flow
+* Compact representation
+* Clear dependency listing
+* Good for sequential relationships
 
 ## HTML Visualization
 
 ### Basic Usage
+
 ```bash
-# Generate HTML visualization
 mono.exe visualize html --output dependencies.html
 ```
 
 ### Features
-- Interactive web page
-- Professional styling with CSS
-- Hover effects and visual enhancements
-- Can be shared and viewed in any browser
-- Printable and presentable
-- Can be embedded in documentation
+
+* Interactive web page
+* Professional CSS styling
+* Hover effects and visual enhancements
+* Shareable and viewable in any browser
+* Printable and presentable
+* Embeddable in documentation
 
 ### HTML Output Structure
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -195,34 +201,30 @@ mono.exe visualize html --output dependencies.html
 ```
 
 ### Customization
-You can customize the HTML output by modifying the template in the source code or by post-processing the generated HTML.
+
+Modify the HTML template in the source code or post-process the generated HTML.
 
 ## Customizing Visualizations
 
 ### Output Files
-For HTML visualizations, you can specify the output file:
-```bash
-# Save to specific file
-mono.exe visualize html --output my-project-dependencies.html
 
-# Save to different directory
+```bash
+mono.exe visualize html --output my-project-dependencies.html
 mono.exe visualize html --output ./docs/dependencies.html
 ```
 
 ### Combining with Other Commands
-```bash
-# Analyze and visualize in one command
-mono.exe analyze && mono.exe visualize
 
-# Generate multiple visualizations
+```bash
+mono.exe analyze && mono.exe visualize
 mono.exe visualize tree > tree.txt
 mono.exe visualize ascii > ascii.txt
 mono.exe visualize horizontal > horizontal.txt
 mono.exe visualize html --output graph.html
 ```
 
-### Automation
-Create scripts to automatically generate visualizations:
+### Automation Example
+
 ```bash
 #!/bin/bash
 # generate-visualizations.sh
@@ -240,83 +242,88 @@ echo "Visualizations generated in docs/ directory"
 ## Interpreting Results
 
 ### Understanding Dependencies
-- **Dependencies**: Modules that this module depends on
-- **Dependents**: Modules that depend on this module
-- **Circular Dependencies**: Avoid these when possible
-- **Orphan Modules**: Modules with no dependencies or dependents
+
+* **Dependencies**: Modules this module depends on
+* **Dependents**: Modules that depend on this module
+* **Circular Dependencies**: Avoid when possible
+* **Orphan Modules**: Modules with no dependencies or dependents
 
 ### Identifying Issues
-- **Too many dependencies**: Module may be doing too much
-- **Too many dependents**: Module may be a bottleneck
-- **Circular dependencies**: Can cause build and testing issues
-- **Orphan modules**: May be unused or poorly integrated
+
+* Too many dependencies → Module may be overloaded
+* Too many dependents → Module may be a bottleneck
+* Circular dependencies → Can break build/test processes
+* Orphan modules → May be unused or poorly integrated
 
 ### Making Decisions
+
 Use visualizations to:
-- Plan refactorings
-- Identify optimization opportunities
-- Understand impact of changes
-- Communicate architecture to team members
+
+* Plan refactorings
+* Identify optimization opportunities
+* Understand change impact
+* Communicate architecture to the team
 
 ## Best Practices
 
 ### When to Use Each Visualization
 
 #### Tree View
-- Best for: Understanding hierarchical relationships
-- Use when: You need to see the nested structure
-- Good for: Terminal-based workflows
+
+* Best for hierarchical relationships
+* Terminal-based workflows
 
 #### ASCII View
-- Best for: Simple visual representation
-- Use when: You want clear boxes and arrows
-- Good for: Quick terminal viewing
+
+* Best for simple boxes and arrows
+* Quick terminal viewing
 
 #### Horizontal View
-- Best for: Understanding data flow
-- Use when: You want to see linear relationships
-- Good for: Documentation and simple analysis
+
+* Best for linear data flow
+* Documentation and analysis
 
 #### HTML View
-- Best for: Professional presentation
-- Use when: You need to share with others
-- Good for: Documentation, presentations, and reports
+
+* Best for professional presentations
+* Documentation, reports, and team sharing
 
 ### Regular Visualization Updates
+
 ```bash
-# Add to your CI/CD pipeline
 mono.exe analyze
 mono.exe visualize html --output docs/latest-dependencies.html
 ```
 
 ### Version Control
-- Commit visualization outputs for important releases
-- Compare visualizations over time
-- Use visualizations in architectural documentation
+
+* Commit visualizations for key releases
+* Compare outputs over time
+* Include in architectural docs
 
 ### Sharing Visualizations
-- Include HTML visualizations in documentation
-- Share tree views in team meetings
-- Use horizontal views in onboarding materials
-- Embed visualizations in project wikis
+
+* Embed HTML visualizations in documentation
+* Present tree views in meetings
+* Use horizontal views for onboarding
+* Include visualizations in project wikis
 
 ### Automation Tips
+
 ```bash
-# Create a Makefile target
+# Makefile example
 visualize:
 	mono.exe visualize html --output docs/dependencies.html
 	mono.exe visualize tree > docs/dependencies.txt
 
-# Run visualization with analysis
 analyze-and-visualize:
 	mono.exe analyze
 	mono.exe visualize html --output docs/dependencies-$(date +%Y%m%d).html
 ```
 
 ### Integration with Documentation
-- Include visualizations in README files
-- Add to project wikis
-- Use in architectural decision records
-- Include in onboarding documentation
 
-By following this guide, you can effectively use MonoMind's visualization features to understand, communicate, and improve your project's architecture.
+* Include visualizations in README files
+* Add to project wikis
+* Use in architectural decision records
+* Include in onboarding documentation

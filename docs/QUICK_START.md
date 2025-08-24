@@ -2,16 +2,14 @@
 
 ## What is MonoMind?
 
-MonoMind is an AI-powered development assistant that helps you manage complex
-codebases. It automates repository analysis, impact prediction, build
-orchestration, testing, refactoring, and release management.
+MonoMind is an AI-powered development assistant that helps you manage complex codebases. It automates repository analysis, impact prediction, build orchestration, testing, refactoring, and release management.
 
 ## Installation
 
 ### Prerequisites
 
-- Go 1.19 or higher
-- Git (for version control features)
+- Go 1.19 or higher  
+- Git (for version control features)  
 
 ### Install MonoMind
 
@@ -24,16 +22,18 @@ cd mono-mind
 go build -o mono.exe ./cmd/mono
 
 # (Optional) Add to PATH
-```
+````
 
 ## First Steps
 
 ### 1. Navigate to Your Project
+
 ```bash
 cd /path/to/your/project
 ```
 
 ### 2. Analyze Your Repository
+
 ```bash
 mono.exe analyze
 ```
@@ -55,11 +55,13 @@ Dependency Graph:
 ```
 
 ### 3. Check Impact of Changes
+
 ```bash
 mono.exe impact src/api/user.js
 ```
 
 Output:
+
 ```
 Impact Analysis for: src/api/user.js
 ======================
@@ -71,40 +73,45 @@ Affected Modules:
 ```
 
 ### 4. Build Affected Modules
+
 ```bash
 mono.exe build
 ```
 
 ### 5. Run Tests for Affected Modules
+
 ```bash
 mono.exe test
 ```
 
 ### 6. Refactor Code Safely
+
 ```bash
 mono.exe refactor --rename "oldFunction:newFunction" --file src/utils.js
 ```
 
 ### 7. Create a Release
+
 ```bash
 mono.exe release --bump minor --changelog
 ```
 
 ## Key Commands
 
-| Command | Description |
-|---------|-------------|
-| `analyze` | Scan repository and build dependency graph |
-| `impact <file>` | Show affected modules for a file change |
-| `build` | Incremental builds of affected modules |
-| `test` | Run tests for affected modules |
-| `refactor` | Safely rename or move code |
-| `release` | Manage version bumps and releases |
-| `visualize` | Visualize repository structure |
+| Command         | Description                                |
+| --------------- | ------------------------------------------ |
+| `analyze`       | Scan repository and build dependency graph |
+| `impact <file>` | Show affected modules for a file change    |
+| `build`         | Incremental builds of affected modules     |
+| `test`          | Run tests for affected modules             |
+| `refactor`      | Safely rename or move code                 |
+| `release`       | Manage version bumps and releases          |
+| `visualize`     | Visualize repository structure             |
 
 ## Configuration
 
 Create `configs/config.yaml`:
+
 ```yaml
 log_level: info
 analyzer:
@@ -121,6 +128,7 @@ build:
 ## Plugins
 
 Create `plugins/pre-build.sh`:
+
 ```bash
 #!/bin/bash
 echo "Pre-build checks..."
@@ -128,6 +136,7 @@ echo "Pre-build checks..."
 ```
 
 Make it executable:
+
 ```bash
 chmod +x plugins/pre-build.sh
 ```
