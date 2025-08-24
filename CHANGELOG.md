@@ -4,5 +4,3 @@
 
 - Enhanced MonoMind with configuration, visualization, and plugin system (d9344f4)
 - Initial commit: MonoMind MVP with CLI, analyzer, build, impact, refactor, and release modules (f732222)
-
-
